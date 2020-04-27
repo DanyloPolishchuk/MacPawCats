@@ -26,7 +26,7 @@ enum Result<String>{
 
 struct NetworkManager {
     
-    let router = Router<TheCatApi>()
+    let router = NetworkRouter<TheCatApi>()
     
     //MARK: - Breeds & Categories
     //
