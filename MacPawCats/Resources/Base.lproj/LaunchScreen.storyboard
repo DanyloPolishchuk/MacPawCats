@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,27 +12,60 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODO: add image to launch screen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65G-0L-zdw">
-                                <rect key="frame" x="54" y="323.5" width="267.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="macPawInternship" translatesAutoresizingMaskIntoConstraints="NO" id="OcV-5n-Fhp">
+                                <rect key="frame" x="47" y="201" width="281" height="205"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YO4-vk-c59">
+                                <rect key="frame" x="168.66666666666666" y="389.66666666666663" width="37.666666666666657" height="33"/>
+                                <color key="tintColor" red="0.2048873007" green="0.2006913722" blue="0.20063769819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YO4-vk-c59" secondAttribute="height" multiplier="1:1" id="hYY-HM-sxJ"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="zzB-CC-KCM">
+                                <rect key="frame" x="145.33333333333334" y="446.66666666666669" width="84.333333333333343" height="84.333333333333314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zzB-CC-KCM" secondAttribute="height" multiplier="1:1" id="1dB-nO-WMd"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.9821200967" green="0.96964985130000003" blue="0.99023169280000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="65G-0L-zdw" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="63H-0u-MNj"/>
-                            <constraint firstItem="65G-0L-zdw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pOK-86-hsL"/>
+                            <constraint firstItem="OcV-5n-Fhp" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3av-XS-N4g"/>
+                            <constraint firstItem="zzB-CC-KCM" firstAttribute="width" secondItem="OcV-5n-Fhp" secondAttribute="width" multiplier="0.15" id="AQv-96-fqP"/>
+                            <constraint firstItem="YO4-vk-c59" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="M6b-2u-5SW"/>
+                            <constraint firstItem="YO4-vk-c59" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PCs-e1-7zI"/>
+                            <constraint firstItem="OcV-5n-Fhp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="VM4-rt-5x2"/>
+                            <constraint firstItem="OcV-5n-Fhp" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.75" id="jMx-Pd-HQb"/>
+                            <constraint firstItem="zzB-CC-KCM" firstAttribute="width" secondItem="OcV-5n-Fhp" secondAttribute="width" multiplier="0.3" id="p4p-cp-0p4"/>
+                            <constraint firstItem="YO4-vk-c59" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.1" id="sla-EX-fg4"/>
+                            <constraint firstItem="zzB-CC-KCM" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.1" id="t7h-Ie-8Cj"/>
+                            <constraint firstItem="zzB-CC-KCM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vtp-F3-zPb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="AQv-96-fqP"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="p4p-cp-0p4"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.6305418719212"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="avatar" width="200" height="200"/>
+        <image name="macPawInternship" width="388" height="205"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+    </resources>
 </document>
