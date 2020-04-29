@@ -24,6 +24,13 @@ enum Result<String>{
     case failure(String)
 }
 
+fileprivate var subId: String {
+    if let subIdData = KeyChain.load(key: "sub_id") {
+        let subId = subIdData.to(type: String.self)
+        return subId
+    } else {return ""}
+}
+
 struct NetworkManager {
     
     let router = NetworkRouter<TheCatApi>()
@@ -96,7 +103,7 @@ struct NetworkManager {
     }
     //MARK: - Votes
     //
-    func getVotes(subId: String, limit: Int, page: Int = 0, completion: @escaping (_ votes: [Vote]?,_ error: String? ) -> () ) {
+    func getVotes(subId: String = subId, limit: Int, page: Int = 0, completion: @escaping (_ votes: [Vote]?,_ error: String? ) -> () ) {
         
         router.request(.votes(subId: subId, limit: limit, page: page)) { (data, response, error) in
             

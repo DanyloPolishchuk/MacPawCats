@@ -8,8 +8,12 @@
 
 import Foundation
 
-fileprivate var onboardingWasShown = false
-fileprivate var isLoginCreated = false
+fileprivate var isOnboardingShown: Bool {
+    return UserDefaults.standard.bool(forKey: "isOnboardingShown")
+}
+fileprivate var isLoggedIn: Bool {
+    return UserDefaults.standard.bool(forKey: "isLoggedIn")
+}
 
 enum LaunchInstructor {
     
@@ -17,7 +21,7 @@ enum LaunchInstructor {
     case login
     case onboarding
     
-    static func configure(tutorialWasShown: Bool = onboardingWasShown, isAutorized: Bool = isLoginCreated) -> LaunchInstructor {
+    static func configure(tutorialWasShown: Bool = isOnboardingShown, isAutorized: Bool = isLoggedIn) -> LaunchInstructor {
         switch (tutorialWasShown, isAutorized) {
         case (true,false), (false,false):
             return .login

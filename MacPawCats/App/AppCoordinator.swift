@@ -11,7 +11,7 @@ import Foundation
 final class AppCoordinator: BaseCoordinator {
     
     private let router: RouterProtocol
-    private let launchInstructor = LaunchInstructor.configure()
+    private var launchInstructor = LaunchInstructor.configure()
     
     init(router: Router) {
         self.router = router
@@ -32,13 +32,21 @@ final class AppCoordinator: BaseCoordinator {
     //MARK: - Flows
     //
     private func runLoginFlow(){
-        
+        print("runLoginFlow called")
+        let loginCoordinator = LoginCoordinator(router: self.router)
+        loginCoordinator.finishFlow = { [unowned self, unowned loginCoordinator] in
+            self.removeDependency(loginCoordinator)
+            self.launchInstructor = LaunchInstructor.configure()
+            self.start()
+        }
+        self.addDependency(loginCoordinator)
+        loginCoordinator.start()
     }
     private func runOnboardingFlow(){
-        
+        print("runOnboardingFlow called")
     }
     private func runMainFlow(){
-        
+        print("runMainFlow called")
     }
     
 }
