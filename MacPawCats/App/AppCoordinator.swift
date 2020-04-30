@@ -32,7 +32,6 @@ final class AppCoordinator: BaseCoordinator {
     //MARK: - Flows
     //
     private func runLoginFlow(){
-        print("runLoginFlow called")
         let loginCoordinator = LoginCoordinator(router: self.router)
         loginCoordinator.finishFlow = { [unowned self, unowned loginCoordinator] in
             self.removeDependency(loginCoordinator)
@@ -43,7 +42,14 @@ final class AppCoordinator: BaseCoordinator {
         loginCoordinator.start()
     }
     private func runOnboardingFlow(){
-        print("runOnboardingFlow called")
+        let onboardingCoordinator = OnboardingCoordinator(router: self.router)
+        onboardingCoordinator.finishFlow = { [unowned self, unowned onboardingCoordinator] in
+            self.removeDependency(onboardingCoordinator)
+            self.launchInstructor = LaunchInstructor.configure()
+            self.start()
+        }
+        self.addDependency(onboardingCoordinator)
+        onboardingCoordinator.start()
     }
     private func runMainFlow(){
         print("runMainFlow called")

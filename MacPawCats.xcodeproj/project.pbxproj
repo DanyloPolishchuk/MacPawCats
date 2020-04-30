@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9E0351C82459D07F00C89AFF /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0351C72459D07F00C89AFF /* Keychain.swift */; };
 		9E0351CA2459DB0900C89AFF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0351C92459DB0900C89AFF /* LoginViewModel.swift */; };
+		9E0622E3245B43990024ABEE /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0622E2245B43990024ABEE /* Onboarding.storyboard */; };
+		9E0622E5245B43B70024ABEE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0622E4245B43B70024ABEE /* OnboardingViewController.swift */; };
+		9E0622E7245B43CB0024ABEE /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0622E6245B43CB0024ABEE /* OnboardingCoordinator.swift */; };
 		9E1355DF24587C9B00C480D7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E1355DE24587C9B00C480D7 /* Login.storyboard */; };
 		9E1355E42458871300C480D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1355E32458871300C480D7 /* RoundedButton.swift */; };
 		9E1355E624588CF600C480D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1355E524588CF600C480D7 /* LoginViewController.swift */; };
@@ -57,6 +60,9 @@
 /* Begin PBXFileReference section */
 		9E0351C72459D07F00C89AFF /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		9E0351C92459DB0900C89AFF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		9E0622E2245B43990024ABEE /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		9E0622E4245B43B70024ABEE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		9E0622E6245B43CB0024ABEE /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		9E1355DE24587C9B00C480D7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9E1355E32458871300C480D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		9E1355E524588CF600C480D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +153,9 @@
 		9E1355DC245877B800C480D7 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				9E0622E2245B43990024ABEE /* Onboarding.storyboard */,
+				9E0622E4245B43B70024ABEE /* OnboardingViewController.swift */,
+				9E0622E6245B43CB0024ABEE /* OnboardingCoordinator.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -403,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E1355DF24587C9B00C480D7 /* Login.storyboard in Resources */,
+				9E0622E3245B43990024ABEE /* Onboarding.storyboard in Resources */,
 				9EC26F87244DD6D8003EF5E3 /* LaunchScreen.storyboard in Resources */,
 				9EC26F84244DD6D8003EF5E3 /* Assets.xcassets in Resources */,
 				9EC26F7F244DD6D6003EF5E3 /* Main.storyboard in Resources */,
@@ -440,7 +450,9 @@
 				9EC26FF4244F9FA9003EF5E3 /* TheCatAPIEndPoint.swift in Sources */,
 				9EF4D55D24570D3F004CFD6B /* Coordinator.swift in Sources */,
 				9EC26FED244F6E91003EF5E3 /* EndPointType.swift in Sources */,
+				9E0622E7245B43CB0024ABEE /* OnboardingCoordinator.swift in Sources */,
 				9EC26FE7244F6376003EF5E3 /* ParameterEncoding.swift in Sources */,
+				9E0622E5245B43B70024ABEE /* OnboardingViewController.swift in Sources */,
 				9EF4D56B245724ED004CFD6B /* BaseCoordinator.swift in Sources */,
 				9EF4D56F24573327004CFD6B /* AppCoordinator.swift in Sources */,
 				9EC26F91244DF4E5003EF5E3 /* Category.swift in Sources */,
