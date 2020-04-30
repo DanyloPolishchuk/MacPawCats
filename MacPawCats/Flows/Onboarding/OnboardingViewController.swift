@@ -8,9 +8,6 @@
 
 import UIKit
 
-//TODO: setup proper images animation
-//TODO: implement page Scrolling 
-
 class OnboardingViewController: UIViewController, StoryboardInitializable, FinishOutput {
     
     var finishFlow: (() -> Void)?
@@ -25,6 +22,13 @@ class OnboardingViewController: UIViewController, StoryboardInitializable, Finis
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    @IBOutlet weak var cell1View: UIView!
+    
+    @IBOutlet weak var upVoteConstraint: NSLayoutConstraint!
+    @IBOutlet weak var downVoteConstraint: NSLayoutConstraint!
+    @IBOutlet weak var saveConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchConstraint: NSLayoutConstraint!
+    
     //MARK: - Lifecycle methods
     //
     override func viewDidLoad() {
@@ -36,12 +40,7 @@ class OnboardingViewController: UIViewController, StoryboardInitializable, Finis
     //
     private func setupScrollView(){
         scrollView.delegate = self
-        print("scrollView size: \(self.scrollView.frame)")
-        print("contentSize: \(self.scrollView.contentSize)")
     }
-    
-    //MARK: - Animation methods
-    //
     
     //MARK: - Actions
     //
@@ -59,6 +58,5 @@ extension OnboardingViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let index = Int(round(scrollView.contentOffset.x / self.scrollView.frame.width))
         self.pageControl.currentPage = index
-        print("contentOffset.x: \(scrollView.contentOffset.x)")
     }
 }

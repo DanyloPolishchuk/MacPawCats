@@ -35,7 +35,7 @@ final class OnboardingCoordinator: BaseCoordinator, FinishOutput {
     private func showOnboardingViewController(){
         let onboardingVC = OnboardingViewController.initFromStoryboard(name: "Onboarding")
         onboardingVC.finishFlow = { [unowned self] in
-//            UserDefaults.standard.set(true, forKey: "isOnboardingShown")
+            UserDefaults.standard.set(true, forKey: "isOnboardingShown")
             self.finishFlow?()
         }
         self.router.setRootModule(onboardingVC, hideBar: true)
