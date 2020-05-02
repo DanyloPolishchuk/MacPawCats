@@ -12,6 +12,11 @@
 		9E0622E3245B43990024ABEE /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0622E2245B43990024ABEE /* Onboarding.storyboard */; };
 		9E0622E5245B43B70024ABEE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0622E4245B43B70024ABEE /* OnboardingViewController.swift */; };
 		9E0622E7245B43CB0024ABEE /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0622E6245B43CB0024ABEE /* OnboardingCoordinator.swift */; };
+		9E0622E9245DA7A00024ABEE /* LaunchRoot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0622E8245DA7A00024ABEE /* LaunchRoot.storyboard */; };
+		9E0622EB245DB3550024ABEE /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0622EA245DB3550024ABEE /* MainCoordinator.swift */; };
+		9E0622F0245E24D50024ABEE /* CatsFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0622EF245E24D50024ABEE /* CatsFeedCoordinator.swift */; };
+		9E0622F2245E25080024ABEE /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0622F1245E25080024ABEE /* ProfileCoordinator.swift */; };
+		9E0622F4245E25250024ABEE /* CatImageUploadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0622F3245E25250024ABEE /* CatImageUploadCoordinator.swift */; };
 		9E1355DF24587C9B00C480D7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E1355DE24587C9B00C480D7 /* Login.storyboard */; };
 		9E1355E42458871300C480D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1355E32458871300C480D7 /* RoundedButton.swift */; };
 		9E1355E624588CF600C480D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1355E524588CF600C480D7 /* LoginViewController.swift */; };
@@ -63,6 +68,11 @@
 		9E0622E2245B43990024ABEE /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		9E0622E4245B43B70024ABEE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		9E0622E6245B43CB0024ABEE /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		9E0622E8245DA7A00024ABEE /* LaunchRoot.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchRoot.storyboard; sourceTree = "<group>"; };
+		9E0622EA245DB3550024ABEE /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		9E0622EF245E24D50024ABEE /* CatsFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsFeedCoordinator.swift; sourceTree = "<group>"; };
+		9E0622F1245E25080024ABEE /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		9E0622F3245E25250024ABEE /* CatImageUploadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageUploadCoordinator.swift; sourceTree = "<group>"; };
 		9E1355DE24587C9B00C480D7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9E1355E32458871300C480D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		9E1355E524588CF600C480D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +139,30 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
+		9E0622EC245E15790024ABEE /* CatsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				9E0622EF245E24D50024ABEE /* CatsFeedCoordinator.swift */,
+			);
+			path = CatsFeed;
+			sourceTree = "<group>";
+		};
+		9E0622ED245E15880024ABEE /* CatImageUpload */ = {
+			isa = PBXGroup;
+			children = (
+				9E0622F3245E25250024ABEE /* CatImageUploadCoordinator.swift */,
+			);
+			path = CatImageUpload;
+			sourceTree = "<group>";
+		};
+		9E0622EE245E15940024ABEE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9E0622F1245E25080024ABEE /* ProfileCoordinator.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		9E1355DA2458779F00C480D7 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +197,11 @@
 		9E1355DD245877C800C480D7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9EC26F7D244DD6D6003EF5E3 /* Main.storyboard */,
+				9E0622EA245DB3550024ABEE /* MainCoordinator.swift */,
+				9E0622EC245E15790024ABEE /* CatsFeed */,
+				9E0622ED245E15880024ABEE /* CatImageUpload */,
+				9E0622EE245E15940024ABEE /* Profile */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -254,7 +293,7 @@
 				9EC26F88244DD6D8003EF5E3 /* Info.plist */,
 				9EC26F83244DD6D8003EF5E3 /* Assets.xcassets */,
 				9EC26F85244DD6D8003EF5E3 /* LaunchScreen.storyboard */,
-				9EC26F7D244DD6D6003EF5E3 /* Main.storyboard */,
+				9E0622E8245DA7A00024ABEE /* LaunchRoot.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -412,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E1355DF24587C9B00C480D7 /* Login.storyboard in Resources */,
+				9E0622E9245DA7A00024ABEE /* LaunchRoot.storyboard in Resources */,
 				9E0622E3245B43990024ABEE /* Onboarding.storyboard in Resources */,
 				9EC26F87244DD6D8003EF5E3 /* LaunchScreen.storyboard in Resources */,
 				9EC26F84244DD6D8003EF5E3 /* Assets.xcassets in Resources */,
@@ -431,6 +471,8 @@
 				9EF4D56624571A90004CFD6B /* UIViewController+Presentable.swift in Sources */,
 				9EC26FE5244F5053003EF5E3 /* NetworkLogger.swift in Sources */,
 				9E1355E624588CF600C480D7 /* LoginViewController.swift in Sources */,
+				9E0622F0245E24D50024ABEE /* CatsFeedCoordinator.swift in Sources */,
+				9E0622EB245DB3550024ABEE /* MainCoordinator.swift in Sources */,
 				9E0351CA2459DB0900C89AFF /* LoginViewModel.swift in Sources */,
 				9EC26FA9244E2C39003EF5E3 /* ModerationLabel.swift in Sources */,
 				9EC26FF2244F77D0003EF5E3 /* NetworkManager.swift in Sources */,
@@ -460,8 +502,10 @@
 				9EC26FEB244F6E19003EF5E3 /* HTTPMethod.swift in Sources */,
 				9E0351C82459D07F00C89AFF /* Keychain.swift in Sources */,
 				9EC26FF62450C8B4003EF5E3 /* JSONParameterEncoder.swift in Sources */,
+				9E0622F2245E25080024ABEE /* ProfileCoordinator.swift in Sources */,
 				9E1355E82458A9AA00C480D7 /* LoginCoordinator.swift in Sources */,
 				9EC26F9D244DFE06003EF5E3 /* Source.swift in Sources */,
+				9E0622F4245E25250024ABEE /* CatImageUploadCoordinator.swift in Sources */,
 				9EC26F9B244DFCBA003EF5E3 /* ImageShort.swift in Sources */,
 				9EC26F9F244DFE42003EF5E3 /* Vote.swift in Sources */,
 				9EF4D56824571E37004CFD6B /* LaunchInstructor.swift in Sources */,

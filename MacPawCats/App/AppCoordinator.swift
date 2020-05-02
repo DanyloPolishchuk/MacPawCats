@@ -52,7 +52,9 @@ final class AppCoordinator: BaseCoordinator {
         onboardingCoordinator.start()
     }
     private func runMainFlow(){
-        print("runMainFlow called")
+        let mainCoordinator = MainCoordinator(router: self.router)
+        self.addDependency(mainCoordinator)
+        mainCoordinator.start()
     }
     
 }
