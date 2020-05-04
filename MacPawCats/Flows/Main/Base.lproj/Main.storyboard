@@ -58,34 +58,103 @@
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="Lvb-Dz-567" kind="relationship" relationship="rootViewController" id="0TX-nG-OUv"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRI-a2-OcF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-532" y="222"/>
         </scene>
-        <!--Upload-->
-        <scene sceneID="cno-ws-dhq">
+        <!--Image Upload-->
+        <scene sceneID="Tki-oZ-Fvz">
             <objects>
-                <viewController id="Lvb-Dz-567" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xsE-Ud-dDM">
+                <viewController storyboardIdentifier="CatImageUploadViewController" id="4AQ-EJ-3mg" customClass="CatImageUploadViewController" customModule="MacPawCats" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6I1-tG-uWH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plus.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ITe-77-QMZ">
-                                <rect key="frame" x="67" y="342" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hooverAsImageUploadTemplate" translatesAutoresizingMaskIntoConstraints="NO" id="Blg-MD-vsj">
+                                <rect key="frame" x="95.666666666666671" y="125.66666666666667" width="183.66666666666663" height="183.33333333333331"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Blg-MD-vsj" secondAttribute="height" multiplier="1:1" id="rod-t0-GQE"/>
+                                </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="V0P-Rp-OuC">
+                                <rect key="frame" x="169" y="387.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4u-Z6-Vts" customClass="RoundedButton" customModule="MacPawCats" customModuleProvider="target">
+                                <rect key="frame" x="18.666666666666671" y="332.66666666666669" width="131.33333333333331" height="32.666666666666686"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="T4u-Z6-Vts" secondAttribute="height" multiplier="4:1" id="mRV-v9-Z7m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="plus" catalog="system"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addImageAction:" destination="4AQ-EJ-3mg" eventType="touchUpInside" id="SoT-Lf-jZP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNR-6j-hMp" customClass="RoundedButton" customModule="MacPawCats" customModuleProvider="target">
+                                <rect key="frame" x="225" y="332.66666666666669" width="131.33333333333337" height="32.666666666666686"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gNR-6j-hMp" secondAttribute="height" multiplier="4:1" id="jgC-XI-0jq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Upload">
+                                    <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="uploadImageAction:" destination="4AQ-EJ-3mg" eventType="touchUpInside" id="Cec-by-XhJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completion Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIg-v8-qf1">
+                                <rect key="frame" x="18.666666666666657" y="446.66666666666669" width="337.66666666666674" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="rRq-h9-gAa"/>
+                        <constraints>
+                            <constraint firstItem="qIg-v8-qf1" firstAttribute="top" secondItem="6I1-tG-uWH" secondAttribute="centerY" multiplier="1.1" id="2pb-5d-Ef2"/>
+                            <constraint firstItem="gNR-6j-hMp" firstAttribute="leading" secondItem="6I1-tG-uWH" secondAttribute="centerX" multiplier="1.2" id="7wz-7h-m1L"/>
+                            <constraint firstItem="Blg-MD-vsj" firstAttribute="centerX" secondItem="6I1-tG-uWH" secondAttribute="centerX" id="G07-t2-qLM"/>
+                            <constraint firstItem="T4u-Z6-Vts" firstAttribute="width" secondItem="WnA-mX-QoJ" secondAttribute="width" multiplier="0.35" id="K9K-BQ-GoJ"/>
+                            <constraint firstItem="T4u-Z6-Vts" firstAttribute="top" secondItem="Blg-MD-vsj" secondAttribute="bottom" multiplier="1.05" constant="8" symbolic="YES" id="MtB-ok-uiq"/>
+                            <constraint firstItem="Blg-MD-vsj" firstAttribute="height" secondItem="WnA-mX-QoJ" secondAttribute="height" multiplier="0.25" id="QIC-HG-eec"/>
+                            <constraint firstItem="gNR-6j-hMp" firstAttribute="bottom" secondItem="6I1-tG-uWH" secondAttribute="centerY" multiplier="0.9" id="Rte-HN-t8u"/>
+                            <constraint firstItem="V0P-Rp-OuC" firstAttribute="centerX" secondItem="6I1-tG-uWH" secondAttribute="centerX" id="SfA-MC-38k"/>
+                            <constraint firstItem="T4u-Z6-Vts" firstAttribute="bottom" secondItem="6I1-tG-uWH" secondAttribute="centerY" multiplier="0.9" id="f3b-Ec-JXT"/>
+                            <constraint firstItem="T4u-Z6-Vts" firstAttribute="trailing" secondItem="6I1-tG-uWH" secondAttribute="centerX" multiplier="0.8" id="hRm-qp-Zq0"/>
+                            <constraint firstItem="gNR-6j-hMp" firstAttribute="width" secondItem="WnA-mX-QoJ" secondAttribute="width" multiplier="0.35" id="iIF-Ir-mQb"/>
+                            <constraint firstItem="qIg-v8-qf1" firstAttribute="leading" secondItem="T4u-Z6-Vts" secondAttribute="leading" id="rWa-dM-HFa"/>
+                            <constraint firstItem="V0P-Rp-OuC" firstAttribute="centerY" secondItem="6I1-tG-uWH" secondAttribute="centerY" id="vUI-e1-ulb"/>
+                            <constraint firstItem="qIg-v8-qf1" firstAttribute="trailing" secondItem="gNR-6j-hMp" secondAttribute="trailing" id="yp8-41-jkN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WnA-mX-QoJ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Upload" id="82J-9z-0o2"/>
+                    <navigationItem key="navigationItem" title="Image Upload" id="8mi-7l-6ZU"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="V0P-Rp-OuC" id="b9G-79-DWV"/>
+                        <outlet property="addButton" destination="T4u-Z6-Vts" id="4om-3X-IBD"/>
+                        <outlet property="completionLabel" destination="qIg-v8-qf1" id="xZa-Cc-7lT"/>
+                        <outlet property="imageView" destination="Blg-MD-vsj" id="c2Q-Sg-sXJ"/>
+                        <outlet property="uploadButton" destination="gNR-6j-hMp" id="906-8B-ezN"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P0q-eh-hcw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xsj-IE-G9L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="284" y="222"/>
         </scene>
@@ -132,10 +201,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="hooverAsImageUploadTemplate" width="184" height="195"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="plus.square" catalog="system" width="128" height="114"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
     </resources>
 </document>

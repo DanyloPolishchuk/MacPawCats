@@ -24,12 +24,7 @@ enum Result<String>{
     case failure(String)
 }
 
-fileprivate var subId: String {
-    if let subIdData = KeyChain.load(key: "sub_id") {
-        let subId = subIdData.to(type: String.self)
-        return subId
-    } else {return ""}
-}
+fileprivate var subId = String(data: KeyChain.load(key: "sub_id")!, encoding: .utf8)!
 
 struct NetworkManager {
     
@@ -332,7 +327,7 @@ struct NetworkManager {
         }
         
     }
-    func uploadImage(image: UIImage, subId: String, completion: @escaping (_ error: String?) -> () ) {
+    func uploadImage(image: UIImage, subId: String = subId, completion: @escaping (_ error: String?) -> () ) {
         
         router.request(.uploadImage(image: image, subId: subId)) { (data, response, error) in
             
@@ -344,13 +339,12 @@ struct NetworkManager {
                 switch result {
                 case .success:
                     completion(nil)
-                case .failure(let networkFailureError):
-                    completion(networkFailureError)
+                case .failure:
+                    completion(HTTPURLResponse.localizedString(forStatusCode: response.statusCode).capitalized)
                 }
             }
             
         }
-        
     }
     func getImage(imageId: String, completion: @escaping (_ image: ImageShort?, _ error: String?) -> () ) {
         

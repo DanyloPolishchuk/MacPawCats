@@ -23,7 +23,13 @@ final class CatImageUploadCoordinator: BaseCoordinator {
     //MARK: - Coordinator
     //
     override func start() {
-        // push image upload screen
-        print("CatImageUploadCoordinator start called")
+        showImageUploadScreen()
+    }
+    
+    private func showImageUploadScreen(){
+        let uploadVC = CatImageUploadViewController.initFromStoryboard()
+        let viewModel = CatImageUploadViewModel()
+        uploadVC.viewModel = viewModel
+        self.router.push(uploadVC)
     }
 }
