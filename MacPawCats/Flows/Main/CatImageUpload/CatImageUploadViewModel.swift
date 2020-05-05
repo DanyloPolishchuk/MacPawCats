@@ -16,14 +16,9 @@ class CatImageUploadViewModel {
     
     func uploadImage(completion: @escaping (_ responseSring: String) -> () ) {
         DispatchQueue.global(qos: .userInitiated).async {
+            
             //TODO: uncomment once Keychain works as supposed to
-//            self.networkManager.uploadImage(image: self.image) { (error) in
-//                let responseString = error == nil ? "Image've been successfully uploaded" : "Correct animal not found"
-//                DispatchQueue.main.async {
-//                    completion(responseString)
-//                }
-//            }
-            self.networkManager.uploadImage(image: self.image, subId: "MacPawCatsTestUser1") { (error) in
+            self.networkManager.uploadImage(image: self.image) { (error) in
                 let responseString = error == nil ? "Image've been successfully uploaded" : error!
                 DispatchQueue.main.async {
                     completion(responseString)

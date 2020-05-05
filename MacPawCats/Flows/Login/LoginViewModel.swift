@@ -12,11 +12,15 @@ class LoginViewModel: FinishOutput {
     
     var finishFlow: (() -> Void)?
     var userId: String = ""
-    
-    func saveUserId() {
-        let userIdData = Data(from: userId)
-        let saveStatus = KeyChain.save(key: "sub_id", data: userIdData)
-        print("save status: \(saveStatus)")
+
+    func saveUserId(){
+        if let data = userId.data(using: .utf8) {
+            do {
+                try Keychain.set(value: data, account: "sub_id")
+            } catch {
+                print("couldn't save sub_id")
+            }
+        }
         finishFlow?()
     }
     

@@ -24,11 +24,24 @@ enum Result<String>{
     case failure(String)
 }
 
-fileprivate var subId = String(data: KeyChain.load(key: "sub_id")!, encoding: .utf8)!
-
 struct NetworkManager {
     
     let router = NetworkRouter<TheCatApi>()
+    let subId: String
+    
+    //MARK: - inits
+    //
+    init() {
+        do {
+            if let subIdData = try Keychain.get(account: "sub_id"), let subId = String(data: subIdData, encoding: .utf8) {
+                self.subId = subId
+            } else{
+                self.subId = "MacPawTestUser1"
+            }
+        } catch {
+            self.subId = "MacPawTestUser1"
+        }
+    }
     
     //MARK: - Breeds & Categories
     //
@@ -98,9 +111,9 @@ struct NetworkManager {
     }
     //MARK: - Votes
     //
-    func getVotes(subId: String = subId, limit: Int, page: Int = 0, completion: @escaping (_ votes: [Vote]?,_ error: String? ) -> () ) {
+    func getVotes(limit: Int, page: Int = 0, completion: @escaping (_ votes: [Vote]?,_ error: String? ) -> () ) {
         
-        router.request(.votes(subId: subId, limit: limit, page: page)) { (data, response, error) in
+        router.request(.votes(subId: self.subId, limit: limit, page: page)) { (data, response, error) in
             
             if error != nil {
                 completion(nil, "Check network connection")
@@ -132,9 +145,9 @@ struct NetworkManager {
         }
         
     }
-    func voteImage(imageId: String, subId: String, value: Int, completion: @escaping (_ error: String?) -> () ) {
+    func voteImage(imageId: String, value: Int, completion: @escaping (_ error: String?) -> () ) {
         
-        router.request(.voteImage(imageId: imageId, subId: subId, value: value)) { (data, response, error) in
+        router.request(.voteImage(imageId: imageId, subId: self.subId, value: value)) { (data, response, error) in
             
             if error != nil {
                 completion("Check network connection")
@@ -174,9 +187,9 @@ struct NetworkManager {
     }
     //MARK: - Favourites
     //
-    func getFavourites(subId: String, limit: Int, page: Int = 0, completion: @escaping (_ favourites: [Favourite]?, _ error: String? ) -> () ) {
+    func getFavourites(limit: Int, page: Int = 0, completion: @escaping (_ favourites: [Favourite]?, _ error: String? ) -> () ) {
         
-        router.request(.favourites(subId: subId, limit: limit, page: page)) { (data, response, error) in
+        router.request(.favourites(subId: self.subId, limit: limit, page: page)) { (data, response, error) in
             
             if error != nil {
                 completion(nil, "Check network connection")
@@ -209,9 +222,9 @@ struct NetworkManager {
         }
         
     }
-    func favouriteImage(imageId: String, subId: String, completion: @escaping (_ error: String?) -> () ) {
+    func favouriteImage(imageId: String, completion: @escaping (_ error: String?) -> () ) {
         
-        router.request(.favouriteImage(imageId: imageId, subId: subId)) { (data, response, error) in
+        router.request(.favouriteImage(imageId: imageId, subId: self.subId)) { (data, response, error) in
             
             if error != nil {
                 completion("Check network connection")
@@ -327,9 +340,9 @@ struct NetworkManager {
         }
         
     }
-    func uploadImage(image: UIImage, subId: String = subId, completion: @escaping (_ error: String?) -> () ) {
+    func uploadImage(image: UIImage, completion: @escaping (_ error: String?) -> () ) {
         
-        router.request(.uploadImage(image: image, subId: subId)) { (data, response, error) in
+        router.request(.uploadImage(image: image, subId: self.subId)) { (data, response, error) in
             
             if error != nil {
                 completion("Check network connection")

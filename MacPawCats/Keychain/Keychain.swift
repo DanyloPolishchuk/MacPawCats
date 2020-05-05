@@ -9,52 +9,105 @@
 import Foundation
 import Security
 
-class KeyChain {
-    
-    class func save(key: String, data: Data) -> OSStatus {
-        let query = [
-            kSecClass as String         : kSecClassGenericPassword as String,
-            kSecAttrAccount as String   : key,
-            kSecValueData as String     : data
-        ] as [String:Any]
-        SecItemDelete(query as CFDictionary)
-        return SecItemAdd(query as CFDictionary, nil)
-    }
-    
-    class func load(key: String) -> Data? {
-        let query = [
-            kSecClass as String : kSecClassGenericPassword,
-            kSecAttrAccount as String : key,
-            kSecReturnData as String : kCFBooleanTrue!,
-            kSecMatchLimit as String : kSecMatchLimitOne
-        ] as [String:Any]
-        var dataTypeRef: AnyObject? = nil
-        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
-        if status == noErr {
-            return dataTypeRef as! Data?
+private let service: String = "MacPawCats"
+
+enum Keychain {
+
+    /// Does a certain item exist?
+    static func exists(account: String) throws -> Bool {
+        let status = SecItemCopyMatching([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: account,
+            kSecAttrService: service,
+            kSecReturnData: false,
+            ] as NSDictionary, nil)
+        if status == errSecSuccess {
+            return true
+        } else if status == errSecItemNotFound {
+            return false
         } else {
-            return nil
+            throw Errors.keychainError
         }
     }
     
-    class func createUniqueID() -> String {
-        let uuid: CFUUID = CFUUIDCreate(nil)
-        let cfStr: CFString = CFUUIDCreateString(nil, uuid)
-        let swiftString: String = cfStr as String
-        return swiftString
+    /// Adds an item to the keychain.
+    private static func add(value: Data, account: String) throws {
+        let status = SecItemAdd([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: account,
+            kSecAttrService: service,
+            // Allow background access:
+            kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
+            kSecValueData: value,
+            ] as NSDictionary, nil)
+        guard status == errSecSuccess else { throw Errors.keychainError }
     }
     
+    /// Updates a keychain item.
+    private static func update(value: Data, account: String) throws {
+        let status = SecItemUpdate([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: account,
+            kSecAttrService: service,
+            ] as NSDictionary, [
+            kSecValueData: value,
+            ] as NSDictionary)
+        guard status == errSecSuccess else { throw Errors.keychainError }
+    }
+    
+    /// Stores a keychain item.
+    static func set(value: Data, account: String) throws {
+        if try exists(account: account) {
+            try update(value: value, account: account)
+        } else {
+            try add(value: value, account: account)
+        }
+    }
+    
+    // If not present, returns nil. Only throws on error.
+    static func get(account: String) throws -> Data? {
+        var result: AnyObject?
+        let status = SecItemCopyMatching([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: account,
+            kSecAttrService: service,
+            kSecReturnData: true,
+            ] as NSDictionary, &result)
+        if status == errSecSuccess {
+            return result as? Data
+        } else if status == errSecItemNotFound {
+            return nil
+        } else {
+            throw Errors.keychainError
+        }
+    }
+    
+    /// Delete a single item.
+    static func delete(account: String) throws {
+        let status = SecItemDelete([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: account,
+            kSecAttrService: service,
+            ] as NSDictionary)
+        guard status == errSecSuccess else { throw Errors.keychainError }
+    }
+    
+    /// Delete all items for my app. Useful on eg logout.
+    static func deleteAll() throws {
+        let status = SecItemDelete([
+            kSecClass: kSecClassGenericPassword,
+            ] as NSDictionary)
+        guard status == errSecSuccess else { throw Errors.keychainError }
+    }
+    
+    enum Errors: Error {
+        case keychainError
+    }
 }
 
-extension Data {
-    
-    init<T>(from value: T) {
-        var value = value
-        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
-    }
-    
-    func to<T>(type: T.Type) -> T {
-        return self.withUnsafeBytes{ $0.load(as: T.self) }
-    }
-    
-}
+//    try Keychain.set(value: "FooBar".data(using: .utf8)!, account: "username")
+//    try Keychain.set(value: "YadaYada".data(using: .utf8)!, account: "password")
+//    let user = try Keychain.get(account: "username")
+//    let pass = try Keychain.get(account: "password")
+//    try Keychain.delete(account: "username")
+//    try Keychain.deleteAll()
