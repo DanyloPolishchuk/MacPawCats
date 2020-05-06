@@ -23,7 +23,12 @@ final class CatsFeedCoordinator: BaseCoordinator {
     //MARK: - Coordinator
     //
     override func start() {
-        // push search screen
-        print("CatsFeedCoordinator start called")
+        showCatsFeedScreen()
     }
+    
+    private func showCatsFeedScreen(){
+        let feedVC = CatsFeedViewController.initFromStoryboard()
+        self.router.push(feedVC)
+    }
+    
 }

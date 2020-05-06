@@ -17,36 +17,80 @@
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="4lU-SG-s6d" kind="relationship" relationship="rootViewController" id="eRF-e3-03H"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JkS-gr-fK6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-532" y="-427"/>
         </scene>
-        <!--Search-->
+        <!--Cats-->
         <scene sceneID="bME-Et-yp8">
             <objects>
-                <viewController id="4lU-SG-s6d" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CatsFeedViewController" id="4lU-SG-s6d" customClass="CatsFeedViewController" customModule="MacPawCats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K5q-KW-BJo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xMU-oA-lQy">
-                                <rect key="frame" x="67" y="342" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ySd-zB-GZt">
+                                <rect key="frame" x="0.0" y="44" width="375" height="32"/>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Breeds"/>
+                                    <segment title="Categories"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didSelectSegmentAction:" destination="4lU-SG-s6d" eventType="valueChanged" id="D7t-bz-VmF"/>
+                                </connections>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpC-dA-BIl">
+                                <rect key="frame" x="0.0" y="75" width="375" height="703"/>
+                                <connections>
+                                    <segue destination="vw3-3A-YRh" kind="embed" id="OaY-k5-hWn"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="RpC-dA-BIl" firstAttribute="top" secondItem="ySd-zB-GZt" secondAttribute="bottom" id="I6e-uQ-Ekn"/>
+                            <constraint firstItem="94W-Ld-bze" firstAttribute="trailing" secondItem="ySd-zB-GZt" secondAttribute="trailing" id="NDT-4K-Qgf"/>
+                            <constraint firstItem="94W-Ld-bze" firstAttribute="bottom" secondItem="RpC-dA-BIl" secondAttribute="bottom" id="akm-dM-A3o"/>
+                            <constraint firstItem="94W-Ld-bze" firstAttribute="trailing" secondItem="RpC-dA-BIl" secondAttribute="trailing" id="eSt-cf-57R"/>
+                            <constraint firstItem="RpC-dA-BIl" firstAttribute="leading" secondItem="94W-Ld-bze" secondAttribute="leading" id="jHs-bb-RhR"/>
+                            <constraint firstItem="ySd-zB-GZt" firstAttribute="top" secondItem="94W-Ld-bze" secondAttribute="top" id="msr-On-oZV"/>
+                            <constraint firstItem="ySd-zB-GZt" firstAttribute="leading" secondItem="94W-Ld-bze" secondAttribute="leading" id="yEH-ba-tqd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="94W-Ld-bze"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="uBz-Iy-TYy"/>
+                    <navigationItem key="navigationItem" title="Cats" id="uBz-Iy-TYy"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="ySd-zB-GZt" id="0tg-CW-5Dj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSh-2x-b5d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="-427"/>
+            <point key="canvasLocation" x="284" y="-427.09359605911334"/>
+        </scene>
+        <!--Feeds Page View Controller-->
+        <scene sceneID="XiR-Li-Y7N">
+            <objects>
+                <pageViewController storyboardIdentifier="FeedsPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vw3-3A-YRh" customClass="FeedsPageViewController" customModule="MacPawCats" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nWw-3e-wQS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1018" y="-427"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JM2-O6-8tT">
+            <objects>
+                <viewController storyboardIdentifier="red" id="5si-bK-xgu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oLm-mL-gTl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="zgd-GC-TI8"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gdk-h4-FS4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1745" y="-468"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O2w-QA-SBj">
@@ -198,6 +242,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNa-FA-tt6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="284" y="873"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8TQ-Dt-R9Z">
+            <objects>
+                <viewController storyboardIdentifier="orange" id="qh0-V5-1om" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RaB-t7-LTi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="ft5-Gx-x6A"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UGJ-Vu-muB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2444" y="-468"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="pfV-UR-KSl">
+            <objects>
+                <viewController storyboardIdentifier="yellow" id="NHR-2J-ULz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qD9-Ba-xkj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="FnM-bC-oDY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTE-MZ-dUQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3106" y="-468"/>
         </scene>
     </scenes>
     <resources>
