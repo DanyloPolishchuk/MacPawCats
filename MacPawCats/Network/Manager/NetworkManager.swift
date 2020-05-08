@@ -111,9 +111,9 @@ struct NetworkManager {
     }
     //MARK: - Votes
     //
-    func getVotes(limit: Int, page: Int = 0, completion: @escaping (_ votes: [Vote]?,_ error: String? ) -> () ) {
+    func getVotes(completion: @escaping (_ votes: [Vote]?, _ error: String? ) -> () ) {
         
-        router.request(.votes(subId: self.subId, limit: limit, page: page)) { (data, response, error) in
+        router.request(.votes(subId: self.subId, limit: nil, page: nil)) { (data, response, error) in
             
             if error != nil {
                 completion(nil, "Check network connection")
@@ -131,14 +131,14 @@ struct NetworkManager {
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
                         print(jsonData)
                         let votes = try JSONDecoder().decode([Vote].self, from: responseData)
-                        completion(votes,nil)
+                        completion(votes, nil)
                         
                     } catch {
                         print(error)
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
                 case .failure(let networkFailureError):
-                    completion(nil,networkFailureError)
+                    completion(nil, networkFailureError)
                 }
             }
             
@@ -187,9 +187,9 @@ struct NetworkManager {
     }
     //MARK: - Favourites
     //
-    func getFavourites(limit: Int, page: Int = 0, completion: @escaping (_ favourites: [Favourite]?, _ error: String? ) -> () ) {
+    func getFavourites(completion: @escaping (_ favourites: [Favourite]?, _ error: String? ) -> () ) {
         
-        router.request(.favourites(subId: self.subId, limit: limit, page: page)) { (data, response, error) in
+        router.request(.favourites(subId: self.subId, limit: nil, page: nil)) { (data, response, error) in
             
             if error != nil {
                 completion(nil, "Check network connection")
@@ -207,14 +207,14 @@ struct NetworkManager {
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
                         print(jsonData)
                         let favourites = try JSONDecoder().decode([Favourite].self, from: responseData)
-                        completion(favourites,nil)
+                        completion(favourites, nil)
                         
                     } catch {
                         print(error)
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
                 case .failure(let networkFailureError):
-                    completion(nil,networkFailureError)
+                    completion(nil, networkFailureError)
                 }
             }
 
@@ -306,9 +306,9 @@ struct NetworkManager {
         }
         
     }
-    func getUploadedImages(order: Order, limit: Int, page: Int = 0, completion: @escaping (_ images: [ImageShort]?, _ error: String?) -> () ) {
+    func getUploadedImages(completion: @escaping (_ images: [ImageShort]?, _ error: String?) -> () ) {
         
-        router.request(.uploadedImages(order: order, limit: limit, page: page)) { (data, response, error) in
+        router.request(.uploadedImages(order: nil, limit: nil, page: nil, subId: self.subId)) { (data, response, error) in
             
             if error != nil {
                 completion(nil, "Check network connection")
@@ -326,14 +326,14 @@ struct NetworkManager {
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
                         print(jsonData)
                         let images = try JSONDecoder().decode([ImageShort].self, from: responseData)
-                        completion(images,nil)
+                        completion(images, nil)
                         
                     } catch {
                         print(error)
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
                 case .failure(let networkFailureError):
-                    completion(nil,networkFailureError)
+                    completion(nil, networkFailureError)
                 }
             }
             

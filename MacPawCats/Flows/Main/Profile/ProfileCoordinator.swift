@@ -23,7 +23,32 @@ final class ProfileCoordinator: BaseCoordinator {
     //MARK: - Coordinator
     //
     override func start() {
-        // push profile screen
-        print("ProfileCoordinator start called")
+        showProfileScreen()
     }
+    
+    func showProfileScreen(){
+        let profileVC = ProfileViewController.initFromStoryboard()
+        profileVC.viewModel = ProfileViewModel()
+        profileVC.onDidSelectUploadedImages = { images in
+            self.showUploadedImagesScreen(images)
+        }
+        profileVC.onDidSelectFavourites = { favourites in
+            self.showFavouritesScreen(favourites)
+        }
+        profileVC.onDidSelectVotes = { votes in
+            self.showVotesScreen(votes)
+        }
+        self.router.push(profileVC)
+    }
+    
+    func showUploadedImagesScreen(_ uploadedImages: [ImageShort]) {
+        print("showUploadedImagesScreen")
+    }
+    func showFavouritesScreen(_ favourites: [Favourite]) {
+        print("showFavouritesScreen")
+    }
+    func showVotesScreen(_ votes: [Vote]) {
+        print("showVotesScreen")
+    }
+    
 }

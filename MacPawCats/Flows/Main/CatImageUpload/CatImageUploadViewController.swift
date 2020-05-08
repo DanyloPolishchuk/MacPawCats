@@ -50,7 +50,6 @@ class CatImageUploadViewController: UIViewController, StoryboardInitializable {
         alertController.popoverPresentationController?.sourceView = self.view
         alertController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection()
         alertController.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-        //TODO: move to coordinator ?
         self.present(alertController, animated: true, completion: nil)
     }
     private func showCameraPickerView(){

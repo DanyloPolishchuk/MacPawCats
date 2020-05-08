@@ -24,19 +24,19 @@ public enum TheCatApi {
     case categories
     
     // votes
-    case votes(subId: String, limit: Int, page: Int)
+    case votes(subId: String, limit: Int?, page: Int?)
     case voteImage(imageId: String, subId: String, value: Int)
     case deleteVote(voteId: Int)
     
     // favourites
-    case favourites(subId: String, limit: Int, page: Int)
+    case favourites(subId: String, limit: Int?, page: Int?)
     case favouriteImage(imageId: String, subId: String)
     case deleteFavourite(favouriteId: Int)
     
     // images
     case searchImagesByBreed(breed: String, order: Order, limit: Int, page: Int)
     case searchImagesByCategory(category: Int, order: Order, limit: Int, page: Int)
-    case uploadedImages(order: Order, limit: Int, page: Int)
+    case uploadedImages(order: Order?, limit: Int?, page: Int?, subId: String)
     case uploadImage(image: UIImage, subId: String)
     case image(imageId: String)
     case deleteImage(imageId: String)
@@ -122,6 +122,9 @@ extension TheCatApi: EndPointType {
     }
     
     var task: HTTPTask {
+        
+        var parameters = [String:Any]()
+        
         switch self {
             
             // breeds & categories
@@ -130,11 +133,16 @@ extension TheCatApi: EndPointType {
             
             // votes
         case .votes(subId: let subId, limit: let limit, page: let page):
+            parameters["sub_id"] = subId
+            if let limit = limit {
+                parameters["limit"] = limit
+            }
+            if let page = page {
+                parameters["page"] = page
+            }
             return .requestParameters(bodyParameters: nil,
                                       bodyEncoding: .urlEncoding,
-                                      urlParameters: ["sub_id" : subId,
-                                                      "limit" : limit,
-                                                      "page" : page])
+                                      urlParameters: parameters)
         case .voteImage(imageId: let imageId, subId: let subId, value: let value):
             return .requestParameters(bodyParameters: ["image_id":imageId,
                                                        "sub_id":subId,
@@ -146,11 +154,16 @@ extension TheCatApi: EndPointType {
             
             // favourites
         case .favourites(subId: let subId, limit: let limit, page: let page):
+            parameters["sub_id"] = subId
+            if let limit = limit {
+                parameters["limit"] = limit
+            }
+            if let page = page {
+                parameters["page"] = page
+            }
             return .requestParameters(bodyParameters: nil,
                                       bodyEncoding: .urlEncoding,
-                                      urlParameters: ["sub_id" : subId,
-                                                      "limit" : limit,
-                                                      "page" : page])
+                                      urlParameters: parameters)
         case .favouriteImage(imageId: let imageId, subId: let subId):
             return .requestParameters(bodyParameters: ["image_id":imageId,
                                                        "sub_id":subId],
@@ -174,12 +187,20 @@ extension TheCatApi: EndPointType {
                                                       "order": order.rawValue,
                                                       "limit":limit,
                                                       "page":page])
-        case .uploadedImages(order: let order, limit: let limit, page: let page):
+        case .uploadedImages(order: let order, limit: let limit, page: let page, subId: let subId):
+            parameters["sub_id"] = subId
+            if let order = order {
+                parameters["order"] = order.rawValue
+            }
+            if let limit = limit {
+                parameters["limit"] = limit
+            }
+            if let page = page {
+                parameters["page"] = page
+            }
             return .requestParameters(bodyParameters: nil,
                                       bodyEncoding: .urlEncoding,
-                                      urlParameters: ["order": order.rawValue,
-                                                      "limit":limit,
-                                                      "page":page])
+                                      urlParameters: parameters)
         case .uploadImage(image: let image, subId: let subId):
             return .requestParameters(bodyParameters: ["file":image,
                                                        "sub_id":subId],
