@@ -25,6 +25,12 @@
 		9E50BDDC2460311E00D543E6 /* CatImageUploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BDDB2460311E00D543E6 /* CatImageUploadViewModel.swift */; };
 		9E50BDDE2461BF0200D543E6 /* CatsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BDDD2461BF0200D543E6 /* CatsFeedViewController.swift */; };
 		9E50BDE12462021E00D543E6 /* FeedsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BDE02462021E00D543E6 /* FeedsPageViewController.swift */; };
+		9E75ED9F2466EE8B0002C0E1 /* ImagesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75ED9E2466EE8B0002C0E1 /* ImagesCollectionViewController.swift */; };
+		9E75EDA12466F2C10002C0E1 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA02466F2C10002C0E1 /* FilterCollectionViewCell.swift */; };
+		9E75EDA32466F2E40002C0E1 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA22466F2E40002C0E1 /* ImageCollectionViewCell.swift */; };
+		9E75EDA52466F4660002C0E1 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA42466F4660002C0E1 /* ImagesViewModel.swift */; };
+		9E75EDA8246717CE0002C0E1 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA7246717CE0002C0E1 /* UserDefaultsKeys.swift */; };
+		9E75EDAA24676BEC0002C0E1 /* ImageOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA924676BEC0002C0E1 /* ImageOperations.swift */; };
 		9EC26F78244DD6D6003EF5E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26F77244DD6D6003EF5E3 /* AppDelegate.swift */; };
 		9EC26F7F244DD6D6003EF5E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EC26F7D244DD6D6003EF5E3 /* Main.storyboard */; };
 		9EC26F82244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26F80244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld */; };
@@ -86,6 +92,12 @@
 		9E50BDDB2460311E00D543E6 /* CatImageUploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageUploadViewModel.swift; sourceTree = "<group>"; };
 		9E50BDDD2461BF0200D543E6 /* CatsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsFeedViewController.swift; sourceTree = "<group>"; };
 		9E50BDE02462021E00D543E6 /* FeedsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsPageViewController.swift; sourceTree = "<group>"; };
+		9E75ED9E2466EE8B0002C0E1 /* ImagesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewController.swift; sourceTree = "<group>"; };
+		9E75EDA02466F2C10002C0E1 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		9E75EDA22466F2E40002C0E1 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		9E75EDA42466F4660002C0E1 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
+		9E75EDA7246717CE0002C0E1 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		9E75EDA924676BEC0002C0E1 /* ImageOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOperations.swift; sourceTree = "<group>"; };
 		9EC26F74244DD6D6003EF5E3 /* MacPawCats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPawCats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC26F77244DD6D6003EF5E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EC26F7E244DD6D6003EF5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -218,6 +230,7 @@
 				9E0622EC245E15790024ABEE /* CatsFeed */,
 				9E0622ED245E15880024ABEE /* CatImageUpload */,
 				9E0622EE245E15940024ABEE /* Profile */,
+				9E75ED9C2466ED5E0002C0E1 /* Shared */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -236,6 +249,34 @@
 				9E50BDE02462021E00D543E6 /* FeedsPageViewController.swift */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		9E75ED9C2466ED5E0002C0E1 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9E75ED9D2466ED830002C0E1 /* ImagesCVC */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9E75ED9D2466ED830002C0E1 /* ImagesCVC */ = {
+			isa = PBXGroup;
+			children = (
+				9E75ED9E2466EE8B0002C0E1 /* ImagesCollectionViewController.swift */,
+				9E75EDA02466F2C10002C0E1 /* FilterCollectionViewCell.swift */,
+				9E75EDA22466F2E40002C0E1 /* ImageCollectionViewCell.swift */,
+				9E75EDA42466F4660002C0E1 /* ImagesViewModel.swift */,
+				9E75EDA924676BEC0002C0E1 /* ImageOperations.swift */,
+			);
+			path = ImagesCVC;
+			sourceTree = "<group>";
+		};
+		9E75EDA6246717330002C0E1 /* Names */ = {
+			isa = PBXGroup;
+			children = (
+				9E75EDA7246717CE0002C0E1 /* UserDefaultsKeys.swift */,
+			);
+			path = Names;
 			sourceTree = "<group>";
 		};
 		9EC26F6B244DD6D6003EF5E3 = {
@@ -259,6 +300,7 @@
 			children = (
 				9EC26F8E244DDE47003EF5E3 /* App */,
 				9EF4D56424571A67004CFD6B /* Extensions */,
+				9E75EDA6246717330002C0E1 /* Names */,
 				9E0351C62459D03A00C89AFF /* Keychain */,
 				9EF4D5542454926B004CFD6B /* Coordinator */,
 				9EC26F8F244DDE4C003EF5E3 /* Models */,
@@ -490,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EC26FE9244F6C9D003EF5E3 /* HTTPTask.swift in Sources */,
+				9E75EDA32466F2E40002C0E1 /* ImageCollectionViewCell.swift in Sources */,
 				9EC26FFA2450F3CC003EF5E3 /* DataParameterEncoder.swift in Sources */,
 				9EF4D56624571A90004CFD6B /* UIViewController+Presentable.swift in Sources */,
 				9EC26FE5244F5053003EF5E3 /* NetworkLogger.swift in Sources */,
@@ -499,8 +542,10 @@
 				9E0351CA2459DB0900C89AFF /* LoginViewModel.swift in Sources */,
 				9EC26FA9244E2C39003EF5E3 /* ModerationLabel.swift in Sources */,
 				9EC26FF2244F77D0003EF5E3 /* NetworkManager.swift in Sources */,
+				9E75EDAA24676BEC0002C0E1 /* ImageOperations.swift in Sources */,
 				9EF00D7F2465A75F003B1259 /* ProfileViewModel.swift in Sources */,
 				9EF4D56324570F41004CFD6B /* Router.swift in Sources */,
+				9E75ED9F2466EE8B0002C0E1 /* ImagesCollectionViewController.swift in Sources */,
 				9EC26FA1244DFEFF003EF5E3 /* Sponsor.swift in Sources */,
 				9EC26F99244DFB22003EF5E3 /* ImageFull.swift in Sources */,
 				9EC26FFC2451DDC4003EF5E3 /* Weight.swift in Sources */,
@@ -512,6 +557,7 @@
 				9EC26F82244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld in Sources */,
 				9E50BDDC2460311E00D543E6 /* CatImageUploadViewModel.swift in Sources */,
 				9EF4D556245492C3004CFD6B /* StoryboardInitializable.swift in Sources */,
+				9E75EDA8246717CE0002C0E1 /* UserDefaultsKeys.swift in Sources */,
 				9EC26F93244DF540003EF5E3 /* Breed.swift in Sources */,
 				9EC26FF4244F9FA9003EF5E3 /* TheCatAPIEndPoint.swift in Sources */,
 				9EF00D7D2465A3EE003B1259 /* ProfileViewController.swift in Sources */,
@@ -521,6 +567,7 @@
 				9EC26FE7244F6376003EF5E3 /* ParameterEncoding.swift in Sources */,
 				9E50BDDA24602F3A00D543E6 /* CatImageUploadViewController.swift in Sources */,
 				9E0622E5245B43B70024ABEE /* OnboardingViewController.swift in Sources */,
+				9E75EDA52466F4660002C0E1 /* ImagesViewModel.swift in Sources */,
 				9EF4D56B245724ED004CFD6B /* BaseCoordinator.swift in Sources */,
 				9E50BDDE2461BF0200D543E6 /* CatsFeedViewController.swift in Sources */,
 				9EF4D56F24573327004CFD6B /* AppCoordinator.swift in Sources */,
@@ -534,6 +581,7 @@
 				9EC26F9D244DFE06003EF5E3 /* Source.swift in Sources */,
 				9E50BDE12462021E00D543E6 /* FeedsPageViewController.swift in Sources */,
 				9E0622F4245E25250024ABEE /* CatImageUploadCoordinator.swift in Sources */,
+				9E75EDA12466F2C10002C0E1 /* FilterCollectionViewCell.swift in Sources */,
 				9EC26F9B244DFCBA003EF5E3 /* ImageShort.swift in Sources */,
 				9EC26F9F244DFE42003EF5E3 /* Vote.swift in Sources */,
 				9EF4D56824571E37004CFD6B /* LaunchInstructor.swift in Sources */,

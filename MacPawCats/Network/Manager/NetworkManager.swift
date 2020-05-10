@@ -264,14 +264,42 @@ struct NetworkManager {
     }
     //MARK: - Images
     //
-    func searchImagesBy(byBreed: Bool, breed: String? = nil, category: Int? = nil, order: Order, limit: Int, page: Int, completion: @escaping (_ images: [ImageShort]?, _ error: String?) -> () ) {
+    func searchImagesBy(imageSearchType: ImageSearchType, completion: @escaping (_ images: [ImageShort]?, _ error: String?) -> () ) {
         
         let route: TheCatApi
-        if byBreed {
-            route = .searchImagesByBreed(breed: breed ?? "", order: order, limit: limit, page: page)
+        let limit = 12
+        let defaultOrderString = "RAND"
+        let defaultImageTypeString = "jpg,png"
+        
+        switch imageSearchType {
             
-        }else {
-            route = .searchImagesByCategory(category: category ?? 1, order: order, limit: limit, page: page)
+        case .All:
+            let allOrder = Order(rawValue: UserDefaults.standard.string(forKey: allOrderKey) ?? defaultOrderString)
+            let allImageType = ImageType(rawValue: UserDefaults.standard.string(forKey: allTypeKey) ?? defaultImageTypeString)
+            route = .searchImages(order: allOrder ?? Order.random, imageType: allImageType ?? ImageType.all, limit: limit)
+            
+        case .Breeds:
+            let breedOrder = Order(rawValue: UserDefaults.standard.string(forKey: breedOrderKey) ?? defaultOrderString)
+            let breedImageType = ImageType(rawValue: UserDefaults.standard.string(forKey: breedTypeKey) ?? defaultImageTypeString)
+            let breedString: String
+            if let breedData = UserDefaults.standard.data(forKey: breedKey), let breed = try? JSONDecoder().decode(BreedShort.self, from: breedData) {
+                breedString = breed.id
+            }else{
+                breedString = "beng"
+            }
+            route = .searchImagesByBreed(breed: breedString, order: breedOrder ?? Order.random, imageType: breedImageType ?? ImageType.all, limit: limit, page: nil)
+            
+        case .Categories:
+            let categoryOrder = Order(rawValue: UserDefaults.standard.string(forKey: categoryOrderKey) ?? defaultOrderString)
+            let categoryImageType = ImageType(rawValue: UserDefaults.standard.string(forKey: categoryTypeKey) ?? defaultImageTypeString)
+            let categoryNum: Int
+            if let categoryData = UserDefaults.standard.data(forKey: categoryKey), let category = try? JSONDecoder().decode(Category.self, from: categoryData) {
+                categoryNum = category.id
+            }else{
+                categoryNum = 1
+            }
+            route = .searchImagesByCategory(category: categoryNum, order: categoryOrder ?? Order.random, imageType: categoryImageType ?? ImageType.all, limit: limit, page: nil)
+            
         }
         
         router.request(route) { (data, response, error) in

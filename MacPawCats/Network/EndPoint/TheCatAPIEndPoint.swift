@@ -15,6 +15,18 @@ public enum Order: String {
     case ascending = "ASC"
 }
 
+public enum ImageType: String {
+    case all = "jpg,png"
+    case png
+    case jpg
+}
+
+public enum ImageSearchType: String {
+    case All
+    case Breeds
+    case Categories
+}
+
 public enum TheCatApi {
     
     // breeds
@@ -34,8 +46,9 @@ public enum TheCatApi {
     case deleteFavourite(favouriteId: Int)
     
     // images
-    case searchImagesByBreed(breed: String, order: Order, limit: Int, page: Int)
-    case searchImagesByCategory(category: Int, order: Order, limit: Int, page: Int)
+    case searchImages(order: Order, imageType: ImageType, limit: Int?)
+    case searchImagesByBreed(breed: String, order: Order, imageType: ImageType, limit: Int?, page: Int?)
+    case searchImagesByCategory(category: Int, order: Order, imageType: ImageType, limit: Int?, page: Int?)
     case uploadedImages(order: Order?, limit: Int?, page: Int?, subId: String)
     case uploadImage(image: UIImage, subId: String)
     case image(imageId: String)
@@ -70,7 +83,7 @@ extension TheCatApi: EndPointType {
         case .deleteFavourite(favouriteId: let favouriteId):
             return "favourites/\(favouriteId)"
             // images
-        case .searchImagesByBreed, .searchImagesByCategory:
+        case .searchImages, .searchImagesByBreed, .searchImagesByCategory:
             return "images/search"
         case .uploadedImages:
             return "images"
@@ -106,7 +119,7 @@ extension TheCatApi: EndPointType {
         case .deleteFavourite:
             return .delete
             // images
-        case .searchImagesByBreed, .searchImagesByCategory:
+        case .searchImages, .searchImagesByBreed, .searchImagesByCategory:
             return .get
         case .uploadedImages:
             return .get
@@ -173,20 +186,41 @@ extension TheCatApi: EndPointType {
             return .request
             
         // images
-        case .searchImagesByBreed(breed: let breed, order: let order, limit: let limit, page: let page):
+        case .searchImages(order: let order, imageType: let imageType, limit: let limit):
+            parameters["order"] = order.rawValue
+            parameters["mime_types"] = imageType.rawValue
+            if let limit = limit {
+                parameters["limit"] = limit
+            }
             return .requestParameters(bodyParameters: nil,
                                       bodyEncoding: .urlEncoding,
-                                      urlParameters: ["breed_ids":breed,
-                                                      "order": order.rawValue,
-                                                      "limit":limit,
-                                                      "page":page])
-        case .searchImagesByCategory(category: let category, order: let order, limit: let limit, page: let page):
+                                      urlParameters: parameters)
+        case .searchImagesByBreed(breed: let breed, order: let order, imageType: let imageType,  limit: let limit, page: let page):
+            parameters["breed_ids"] = breed
+            parameters["order"] = order.rawValue
+            parameters["mime_types"] = imageType.rawValue
+            if let limit = limit {
+                parameters["limit"] = limit
+            }
+            if let page = page {
+                parameters["page"] = page
+            }
             return .requestParameters(bodyParameters: nil,
                                       bodyEncoding: .urlEncoding,
-                                      urlParameters: ["category_ids":category,
-                                                      "order": order.rawValue,
-                                                      "limit":limit,
-                                                      "page":page])
+                                      urlParameters: parameters)
+        case .searchImagesByCategory(category: let category, order: let order, imageType: let imageType, limit: let limit, page: let page):
+            parameters["category_ids"] = category
+            parameters["order"] = order.rawValue
+            parameters["mime_types"] = imageType.rawValue
+            if let limit = limit {
+                parameters["limit"] = limit
+            }
+            if let page = page {
+                parameters["page"] = page
+            }
+            return .requestParameters(bodyParameters: nil,
+                                      bodyEncoding: .urlEncoding,
+                                      urlParameters: parameters)
         case .uploadedImages(order: let order, limit: let limit, page: let page, subId: let subId):
             parameters["sub_id"] = subId
             if let order = order {

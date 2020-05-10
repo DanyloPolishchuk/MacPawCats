@@ -22,9 +22,9 @@ class FeedsPageViewController: UIPageViewController {
     
     weak var pagesToFeedDelegate: PagesToFeedProtocol?
     
-    let redVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "red")
-    let orangeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "orange")
-    let yellowVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "yellow")
+    let allImagesCollectionViewController = ImagesCollectionViewController.initFromStoryboard()
+    let breedsCollectionViewController = ImagesCollectionViewController.initFromStoryboard()
+    let categoriesCollectionViewController = ImagesCollectionViewController.initFromStoryboard()
     var pageViewControllers: [UIViewController]?
     
     override func viewDidLoad() {
@@ -33,13 +33,17 @@ class FeedsPageViewController: UIPageViewController {
         dataSource = self
         delegate = self
         
+        allImagesCollectionViewController.viewModel = ImagesViewModel(type: .All)
+        breedsCollectionViewController.viewModel = ImagesViewModel(type: .Breeds)
+        categoriesCollectionViewController.viewModel = ImagesViewModel(type: .Categories)
+        
         self.pageViewControllers = [
-            redVC,
-            orangeVC,
-            yellowVC
+            allImagesCollectionViewController,
+            breedsCollectionViewController,
+            categoriesCollectionViewController
         ]
         let viewControllers = [
-            redVC
+            allImagesCollectionViewController
         ]
         setViewControllers(viewControllers,
                            direction: .forward,
@@ -52,20 +56,20 @@ class FeedsPageViewController: UIPageViewController {
 extension FeedsPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         switch viewController {
-        case orangeVC:
-            return redVC
-        case yellowVC:
-            return orangeVC
+        case breedsCollectionViewController:
+            return allImagesCollectionViewController
+        case categoriesCollectionViewController:
+            return breedsCollectionViewController
         default:
             return nil
         }
     }
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         switch viewController {
-        case redVC:
-            return orangeVC
-        case orangeVC:
-            return yellowVC
+        case allImagesCollectionViewController:
+            return breedsCollectionViewController
+        case breedsCollectionViewController:
+            return categoriesCollectionViewController
         default:
             return nil
         }
@@ -94,17 +98,17 @@ extension FeedsPageViewController: FeedToPagesProtocol {
         
         switch index {
         case 0:
-            setViewControllers([redVC],
+            setViewControllers([allImagesCollectionViewController],
                                direction: .reverse,
                                animated: true,
                                completion: nil)
         case 1:
-            setViewControllers([orangeVC],
+            setViewControllers([breedsCollectionViewController],
                                direction: previousIndex == 0 ? .forward : .reverse,
                                animated: true,
                                completion: nil)
         case 2:
-            setViewControllers([yellowVC],
+            setViewControllers([categoriesCollectionViewController],
                                direction: .forward,
                                animated: true,
                                completion: nil)

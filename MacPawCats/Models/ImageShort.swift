@@ -12,5 +12,5 @@ struct ImageShort: Codable {
     let id: String
     let url: String
     let categories: [Category]?
-    let breeds: [Breed]?
+    let breeds: [Breed]?    
 }
