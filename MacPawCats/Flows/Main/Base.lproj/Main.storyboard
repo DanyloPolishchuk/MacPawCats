@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,6 +39,7 @@
                                     <segment title="Breeds"/>
                                     <segment title="Categories"/>
                                 </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="didSelectSegmentAction:" destination="4lU-SG-s6d" eventType="valueChanged" id="D7t-bz-VmF"/>
                                 </connections>
@@ -77,21 +79,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWw-3e-wQS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1018" y="-427"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="JM2-O6-8tT">
-            <objects>
-                <viewController storyboardIdentifier="red" id="5si-bK-xgu" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oLm-mL-gTl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="zgd-GC-TI8"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gdk-h4-FS4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1745" y="-468"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O2w-QA-SBj">
@@ -213,69 +200,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xo8-sj-ByQ">
                             <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="50" height="50"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCollectionViewCellIndentifier" id="WQz-Az-tI3" customClass="FilterCollectionViewCell" customModule="MacPawCats" customModuleProvider="target">
-                                <rect key="frame" x="16.666666666666668" y="0.0" width="342" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="I6V-kX-al1">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLY-wH-fFQ">
-                                            <rect key="frame" x="283" y="8" width="43" height="34"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <state key="normal" title="Type">
-                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="typeAction:" destination="WQz-Az-tI3" eventType="touchUpInside" id="fWz-C9-5ah"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0f-Li-SSd">
-                                            <rect key="frame" x="217" y="8" width="50" height="34"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <state key="normal" title="Order">
-                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="orderAction:" destination="WQz-Az-tI3" eventType="touchUpInside" id="Sb4-Qd-veU"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qv7-cG-UD7">
-                                            <rect key="frame" x="16" y="8" width="139" height="34"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <state key="normal" title="Breed/Category">
-                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="categoryAction:" destination="WQz-Az-tI3" eventType="touchUpInside" id="JLy-xN-LpZ"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Qv7-cG-UD7" firstAttribute="centerY" secondItem="I6V-kX-al1" secondAttribute="centerY" id="4Ja-2K-XVW"/>
-                                        <constraint firstItem="NLY-wH-fFQ" firstAttribute="leading" secondItem="Z0f-Li-SSd" secondAttribute="trailing" constant="16" id="BZ8-oJ-br1"/>
-                                        <constraint firstItem="Z0f-Li-SSd" firstAttribute="centerY" secondItem="I6V-kX-al1" secondAttribute="centerY" id="exY-TO-gxr"/>
-                                        <constraint firstItem="Qv7-cG-UD7" firstAttribute="leading" secondItem="I6V-kX-al1" secondAttribute="leading" constant="16" id="hg6-4s-uAq"/>
-                                        <constraint firstAttribute="trailing" secondItem="NLY-wH-fFQ" secondAttribute="trailing" constant="16" id="icR-8i-2dw"/>
-                                        <constraint firstItem="Z0f-Li-SSd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Qv7-cG-UD7" secondAttribute="trailing" id="mWW-K2-Nl4"/>
-                                        <constraint firstItem="NLY-wH-fFQ" firstAttribute="centerY" secondItem="I6V-kX-al1" secondAttribute="centerY" id="vZb-qD-CCe"/>
-                                    </constraints>
-                                </collectionViewCellContentView>
-                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="customSize" width="342" height="50"/>
-                                <connections>
-                                    <outlet property="categoryButton" destination="Qv7-cG-UD7" id="7ii-lm-pgC"/>
-                                    <outlet property="orderButton" destination="Z0f-Li-SSd" id="1q9-Ny-EGW"/>
-                                    <outlet property="typeButton" destination="NLY-wH-fFQ" id="pLo-hC-8VW"/>
-                                </connections>
-                            </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="ImageCollectionViewCellIdentifier" id="C0j-gh-B8A" customClass="ImageCollectionViewCell" customModule="MacPawCats" customModuleProvider="target">
-                                <rect key="frame" x="132.66666666666666" y="60" width="110" height="128"/>
+                                <rect key="frame" x="0.0" y="50" width="110" height="128"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="o7I-oQ-dgJ">
                                     <rect key="frame" x="0.0" y="0.0" width="110" height="128"/>
@@ -286,7 +217,7 @@
                                         </imageView>
                                         <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-Hq-D0K">
                                             <rect key="frame" x="0.0" y="0.0" width="110" height="128"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XUY-yR-twz">
                                             <rect key="frame" x="73.666666666666671" y="92" width="36.333333333333329" height="36"/>
@@ -335,6 +266,93 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FilterCollectionReusableViewReuseIdentifier" id="Vwb-Ja-aeL" customClass="FilterCollectionReusableView" customModule="MacPawCats" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3sW-6w-gnC">
+                                    <rect key="frame" x="250" y="8" width="101" height="34"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUw-3J-BUv" customClass="RoundedButton" customModule="MacPawCats" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
+                                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <state key="normal" title="Order">
+                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="orderAction:" destination="Vwb-Ja-aeL" eventType="touchUpInside" id="lGB-1z-fcZ"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dV-Sv-s08" customClass="RoundedButton" customModule="MacPawCats" customModuleProvider="target">
+                                            <rect key="frame" x="58" y="0.0" width="43" height="34"/>
+                                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <state key="normal" title="Type">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="typeAction:" destination="Vwb-Ja-aeL" eventType="touchUpInside" id="kQR-Ep-eEo"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SI5-ol-0K0" customClass="RoundedButton" customModule="MacPawCats" customModuleProvider="target">
+                                    <rect key="frame" x="24" y="8" width="139" height="34"/>
+                                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <state key="normal" title="Breed/Category">
+                                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="categoryAction:" destination="Vwb-Ja-aeL" eventType="touchUpInside" id="rFU-dJ-Lqq"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="SI5-ol-0K0" firstAttribute="centerY" secondItem="Vwb-Ja-aeL" secondAttribute="centerY" id="12s-ez-bui"/>
+                                <constraint firstItem="3sW-6w-gnC" firstAttribute="centerY" secondItem="Vwb-Ja-aeL" secondAttribute="centerY" id="Eaj-on-qZh"/>
+                                <constraint firstItem="SI5-ol-0K0" firstAttribute="leading" secondItem="Vwb-Ja-aeL" secondAttribute="leadingMargin" constant="16" id="Lzd-Un-Fni"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="3sW-6w-gnC" secondAttribute="trailing" constant="16" id="WfG-Tx-Khg"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="categoryButton" destination="SI5-ol-0K0" id="yWB-UL-IPz"/>
+                                <outlet property="orderButton" destination="IUw-3J-BUv" id="IAy-PZ-hEI"/>
+                                <outlet property="typeButton" destination="8dV-Sv-s08" id="O6d-Ro-XWf"/>
+                            </connections>
+                        </collectionReusableView>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="AdditionalLoadingCollectionReusableViewReuseIdentifier" id="w5F-lw-WhP" customClass="AdditionalLoadingCollectionReusableView" customModule="MacPawCats" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="178" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="eGH-Qp-ohG">
+                                    <rect key="frame" x="169" y="6.6666666666666679" width="37" height="37"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="eGH-Qp-ohG" firstAttribute="centerY" secondItem="w5F-lw-WhP" secondAttribute="centerY" id="0qU-eg-KcD"/>
+                                <constraint firstItem="eGH-Qp-ohG" firstAttribute="centerX" secondItem="w5F-lw-WhP" secondAttribute="centerX" id="Xgf-3J-Urb"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="activityIndicator" destination="eGH-Qp-ohG" id="6n7-NQ-ek9"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="h9o-i4-bBU" id="4mi-U7-uWj"/>
                             <outlet property="delegate" destination="h9o-i4-bBU" id="baw-vG-bWt"/>
@@ -425,36 +443,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNa-FA-tt6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="284" y="873"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="8TQ-Dt-R9Z">
-            <objects>
-                <viewController storyboardIdentifier="orange" id="qh0-V5-1om" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RaB-t7-LTi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="ft5-Gx-x6A"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UGJ-Vu-muB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2444" y="-468"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="pfV-UR-KSl">
-            <objects>
-                <viewController storyboardIdentifier="yellow" id="NHR-2J-ULz" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qD9-Ba-xkj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="FnM-bC-oDY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTE-MZ-dUQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3106" y="-468"/>
         </scene>
     </scenes>
     <resources>

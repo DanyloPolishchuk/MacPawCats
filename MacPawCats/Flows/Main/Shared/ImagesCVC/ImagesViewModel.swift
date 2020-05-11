@@ -13,6 +13,8 @@ class ImagesViewModel {
     
     //MARK: - Properties
     //
+    var isLoading = false // first load / reload
+    
     let type: ImagesCollectionScreenType
     let pendingOperations = PendingOperations()
     let networkManager = NetworkManager()
@@ -41,49 +43,26 @@ class ImagesViewModel {
     
     //MARK: - collectionView methods
     //
-    func getNumberOfItemsInSection(section: Int) -> Int {
-        if section == 0 { // section #1 (index 0)
-            // profile screen collections have 1 section
-            switch self.type {
-            case .All, .Breeds, .Categories:
-                return 1 // filter cell
-            case .Uploaded:
-                return uploadedImages?.count ?? 0
-            case .Favourites:
-                return favourites?.count ?? 0
-            case .Votes:
-                return votes?.count ?? 0
-            }
-        }else{ // section #2 (index 1)
-            // search screen collections have 2 sections (1st is a section via filter cell)
-            switch self.type {
-            case .All, .Breeds, .Categories:
-                return images?.count ?? 0
-            default:
-                return 0
-            }
-        }
-    }
-    
-    func getSizeForItemAt(indexPath: IndexPath, forCollectionView collectionView: UICollectionView) -> CGSize {
-        let standartCellSize = CGSize(width: collectionView.frame.width * 0.33, height: collectionView.frame.width * 0.33)
+    func getNumberOfItems() -> Int {
         switch self.type {
-        case .All, .Breeds, .Categories:
-            if indexPath.section == 0 { // filter cell
-                return CGSize(width: collectionView.frame.width, height: collectionView.frame.width * 0.1)
-            }else {
-                return standartCellSize
-            }
-        case .Uploaded, .Favourites, .Votes:
-            return standartCellSize
+        case .Uploaded:
+            return uploadedImages?.count ?? 0
+        case .Favourites:
+            return favourites?.count ?? 0
+        case .Votes:
+            return votes?.count ?? 0
+        default:
+            return images?.count ?? 0
         }
     }
-    
+        
     //MARK: - Network methods
     //
     private func loadPortionOfImages(completion: @escaping (_ images: [ImageShort]?, _ error: String?) -> Void ) {
+        guard !self.isLoading else {return}
         guard let imageSearchType = ImageSearchType(rawValue: self.type.rawValue) else {return} // works only when type is All/Breeds/Categories
         DispatchQueue.global(qos: .utility).async {
+            self.isLoading = true
             self.networkManager.searchImagesBy(imageSearchType: imageSearchType) { (images, error) in
                 if let images = images {
                     completion(images,nil)
@@ -98,10 +77,12 @@ class ImagesViewModel {
             if let images = images {
                 self.images = images
                 self.imageRecords = images.map{ImageRecord(url: URL(string: $0.url)!)}
+                self.isLoading = false
                 DispatchQueue.main.async {
                     completion(nil)
                 }
             }else {
+                self.isLoading = false
                 DispatchQueue.main.async {
                     completion(error)
                 }
@@ -119,10 +100,12 @@ class ImagesViewModel {
                     self.images = loadedImages
                     self.imageRecords = imageRecords
                 }
+                self.isLoading = false
                 DispatchQueue.main.async {
                     completion(nil)
                 }
             }else {
+                self.isLoading = false
                 DispatchQueue.main.async {
                     completion(error)
                 }

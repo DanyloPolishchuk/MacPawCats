@@ -26,15 +26,22 @@ class ImageCollectionViewCell: UICollectionViewCell {
         self.imageView.image = imageRecord.image
         switch imageRecord.state {
         case .downloaded, .failed:
-            darkenerView.alpha = 0
             activityIndicator.stopAnimating()
         case .new:
-            darkenerView.alpha = 0.2
             activityIndicator.startAnimating()
         }
         //TODO: implement   (up/downvote, fav, (optionally later uploaded)) imageView(s) isHidden and image properties setup
         favouriteStatusImageView.isHidden = true
         voteStatusImageView.isHidden = true
+    }
+    
+    //TODO: implement setup methods for FAV,UPLOAD,VOTE
+    
+    func highlight(){
+        darkenerView.alpha = 0.4
+    }
+    func unHighLight(){
+        darkenerView.alpha = 0
     }
     
 }
