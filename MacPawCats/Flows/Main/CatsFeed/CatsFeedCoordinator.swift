@@ -13,6 +13,7 @@ final class CatsFeedCoordinator: BaseCoordinator {
     //MARK: - Properties
     //
     private let router: RouterProtocol
+    var feedVC: CatsFeedViewController!
     
     //MARK: - inits
     //
@@ -26,8 +27,12 @@ final class CatsFeedCoordinator: BaseCoordinator {
         showCatsFeedScreen()
     }
     
+    func scrollToTop(){
+        feedVC.scrollToTop()
+    }
+    
     private func showCatsFeedScreen(){
-        let feedVC = CatsFeedViewController.initFromStoryboard()
+        feedVC = CatsFeedViewController.initFromStoryboard()
         self.router.push(feedVC)
     }
     

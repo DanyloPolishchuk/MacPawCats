@@ -10,6 +10,7 @@ import UIKit
 
 protocol FeedToPagesProtocol: class {
     func segmentSelected(index: Int, previousSegmentIndex: Int)
+    func scrollToTop()
 }
 
 class CatsFeedViewController: UIViewController, StoryboardInitializable {
@@ -35,6 +36,12 @@ class CatsFeedViewController: UIViewController, StoryboardInitializable {
         let destinationVC = segue.destination as? FeedsPageViewController
         feedToPagesDelegate = destinationVC
         destinationVC?.pagesToFeedDelegate = self
+    }
+    
+    //MARK: - Coordinator method
+    //
+    func scrollToTop(){
+        feedToPagesDelegate?.scrollToTop()
     }
     
     //MARK: - Actions

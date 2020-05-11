@@ -6,7 +6,9 @@
 //  Copyright © 2020 Polishchuk company. All rights reserved.
 //
 
-class BaseCoordinator: Coordinator {
+import Foundation
+
+class BaseCoordinator: NSObject, Coordinator {
     
     var childCoordinators = [Coordinator]()
     

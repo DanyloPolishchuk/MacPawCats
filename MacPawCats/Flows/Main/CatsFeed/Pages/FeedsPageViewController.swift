@@ -116,4 +116,16 @@ extension FeedsPageViewController: FeedToPagesProtocol {
             break
         }
     }
+    func scrollToTop() {
+        switch currentIndex {
+        case 0:
+            allImagesCollectionViewController.scrollToTop()
+        case 1:
+            breedsCollectionViewController.scrollToTop()
+        case 2:
+            categoriesCollectionViewController.scrollToTop()
+        default:
+            break
+        }
+    }
 }

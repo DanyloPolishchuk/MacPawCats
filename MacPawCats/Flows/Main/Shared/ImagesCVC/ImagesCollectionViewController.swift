@@ -20,7 +20,7 @@ enum ImagesCollectionScreenType: String {
 class ImagesCollectionViewController: UICollectionViewController, StoryboardInitializable {
     
     //MARK: - Properties
-    //    
+    //
     let filterReusableViewIdentifier = "FilterCollectionReusableViewReuseIdentifier"
     let additionalLoadingReusableViewIdentifier = "AdditionalLoadingCollectionReusableViewReuseIdentifier"
     let imageCellIdentifier = "ImageCollectionViewCellIdentifier"
@@ -35,7 +35,6 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
         super.viewDidLoad()
         setupRefreshControl()
         
-        //TODO: implement initial load activity indicator
         // initial load
         setupInitialLoadingView()
         viewModel.loadAdditionalImages { (error) in
@@ -181,6 +180,10 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         viewModel.loadImagesForVisibleItems(collectionView: collectionView)
         viewModel.resumeAllOperations()
+    }
+    
+    func scrollToTop(){
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
     
 }

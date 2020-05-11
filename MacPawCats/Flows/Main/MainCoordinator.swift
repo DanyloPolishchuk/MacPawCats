@@ -15,6 +15,14 @@ final class MainCoordinator: BaseCoordinator {
     //
     private let router: RouterProtocol
     private let tabBarController = UITabBarController()
+    // navControllers
+    var catsFeedRootNavigationController: UINavigationController!
+    var imageUploadRootNavigationController: UINavigationController!
+    var profileRootNavigationController: UINavigationController!
+    // coordinators
+    var feedCoordinator: CatsFeedCoordinator!
+    var uploadCoordinator: CatImageUploadCoordinator!
+    var profileCoordinator: ProfileCoordinator!
     
     //MARK: - inits
     //
@@ -32,18 +40,19 @@ final class MainCoordinator: BaseCoordinator {
     //
     private func setupMainCoordinator(){
         // 1. create root NavControllers
-        guard let catsFeedRootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchNavigationController") as? UINavigationController,
-        let imageUploadRootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadNavigationController") as? UINavigationController,
-            let profileRootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileNavigationController") as? UINavigationController else {return}
+        catsFeedRootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchNavigationController") as? UINavigationController
+        imageUploadRootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadNavigationController") as? UINavigationController
+        profileRootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileNavigationController") as? UINavigationController
         // 2. create child Coordinators
-        let feedCoordinator = CatsFeedCoordinator(router: Router(rootController: catsFeedRootNavigationController))
-        let uploadCoordinator = CatImageUploadCoordinator(router: Router(rootController: imageUploadRootNavigationController))
-        let profileCoordinator = ProfileCoordinator(router: Router(rootController: profileRootNavigationController))
+        feedCoordinator = CatsFeedCoordinator(router: Router(rootController: catsFeedRootNavigationController))
+        uploadCoordinator = CatImageUploadCoordinator(router: Router(rootController: imageUploadRootNavigationController))
+        profileCoordinator = ProfileCoordinator(router: Router(rootController: profileRootNavigationController))
         // 3. add dependencies
         self.addDependency(feedCoordinator)
         self.addDependency(uploadCoordinator)
         self.addDependency(profileCoordinator)
         // 4. setup tabBarController
+        tabBarController.delegate = self
         tabBarController.viewControllers = [catsFeedRootNavigationController,
                                             imageUploadRootNavigationController,
                                             profileRootNavigationController]
@@ -60,4 +69,18 @@ final class MainCoordinator: BaseCoordinator {
         
     }
     
+}
+
+extension MainCoordinator: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        switch viewController {
+        case catsFeedRootNavigationController:
+            feedCoordinator.scrollToTop()
+        case profileRootNavigationController:
+            // implement scrollToTop for currently presented Uploads/Favs/Votes CVC
+            break
+        default:
+            break
+        }
+    }
 }
