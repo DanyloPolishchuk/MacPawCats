@@ -78,7 +78,7 @@ class FilterCollectionReusableView: UICollectionReusableView {
         print("orderAction")
     }
     @IBAction func categoryAction(_ sender: Any) {
-        print("categoryAction")
+        print("\(type == .Categories ? "category" : "breed")Action")
     }
     
 }

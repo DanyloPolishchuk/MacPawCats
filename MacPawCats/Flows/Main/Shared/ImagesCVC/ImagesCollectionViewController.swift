@@ -20,13 +20,12 @@ enum ImagesCollectionScreenType: String {
 class ImagesCollectionViewController: UICollectionViewController, StoryboardInitializable {
     
     //MARK: - Properties
-    //
-    let filterCellIdentifier = "FilterCollectionViewCellIndentifier"
-    
+    //    
     let filterReusableViewIdentifier = "FilterCollectionReusableViewReuseIdentifier"
     let additionalLoadingReusableViewIdentifier = "AdditionalLoadingCollectionReusableViewReuseIdentifier"
     let imageCellIdentifier = "ImageCollectionViewCellIdentifier"
     
+    var loadingView: UIView?
     var footerView: AdditionalLoadingCollectionReusableView?
     var viewModel: ImagesViewModel!
 
@@ -35,13 +34,13 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRefreshControl()
+        
         //TODO: implement initial load activity indicator
+        // initial load
+        setupInitialLoadingView()
         viewModel.loadAdditionalImages { (error) in
-            if let error = error {
-                //TODO: display error alert
-                return
-            }
-            self.collectionView.reloadData()
+            self.removeInitialLoadingView()
+            self.handleResponse(error: error)
         }
     }
     
@@ -51,17 +50,43 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
         collectionView.refreshControl = UIRefreshControl()
         collectionView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
+    private func setupInitialLoadingView(){
+        loadingView = UIView(frame: self.view.frame)
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.startAnimating()
+        activityIndicator.center = loadingView?.center ?? CGPoint.zero
+        loadingView?.addSubview(activityIndicator)
+        self.view.addSubview(loadingView ?? UIView())
+    }
+    private func removeInitialLoadingView(){
+        UIView.animate(withDuration: 1.0, animations: {
+            self.loadingView?.alpha = 0
+        }) { (animationsFinishedBeforeCompletion) in
+            self.loadingView?.removeFromSuperview()
+        }
+    }
+    
+    //MARK: - Response Alert methods
+    //
+    func handleResponse(error: String?) {
+        if let error = error {
+            presentAlertFor(error: error)
+            return
+        }
+        self.collectionView.refreshControl?.endRefreshing()
+        self.collectionView.reloadData()
+    }
+    func presentAlertFor(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction( UIAlertAction(title: "Ok", style: .cancel) )
+        self.present(alert, animated: true)
+    }
     
     //MARK: - @objc methods
     //
     @objc func handleRefresh() {
         viewModel.reloadDataSource { (error) in
-            if let error = error {
-                //TODO: display error alert
-                return
-            }
-            self.collectionView.refreshControl?.endRefreshing()
-            self.collectionView.reloadData()
+            self.handleResponse(error: error)
         }
     }
     
@@ -123,11 +148,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == viewModel.getNumberOfItems() - 1 {
             viewModel.loadAdditionalImages { (error) in
-                if let error = error {
-                    //TODO: display error alert
-                    return
-                }
-                self.collectionView.reloadData()
+                self.handleResponse(error: error)
             }
         }
     }

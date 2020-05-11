@@ -28,7 +28,6 @@
 		9E50BDDE2461BF0200D543E6 /* CatsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BDDD2461BF0200D543E6 /* CatsFeedViewController.swift */; };
 		9E50BDE12462021E00D543E6 /* FeedsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BDE02462021E00D543E6 /* FeedsPageViewController.swift */; };
 		9E75ED9F2466EE8B0002C0E1 /* ImagesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75ED9E2466EE8B0002C0E1 /* ImagesCollectionViewController.swift */; };
-		9E75EDA12466F2C10002C0E1 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA02466F2C10002C0E1 /* FilterCollectionViewCell.swift */; };
 		9E75EDA32466F2E40002C0E1 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA22466F2E40002C0E1 /* ImageCollectionViewCell.swift */; };
 		9E75EDA52466F4660002C0E1 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA42466F4660002C0E1 /* ImagesViewModel.swift */; };
 		9E75EDA8246717CE0002C0E1 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA7246717CE0002C0E1 /* UserDefaultsKeys.swift */; };
@@ -97,7 +96,6 @@
 		9E50BDDD2461BF0200D543E6 /* CatsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsFeedViewController.swift; sourceTree = "<group>"; };
 		9E50BDE02462021E00D543E6 /* FeedsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsPageViewController.swift; sourceTree = "<group>"; };
 		9E75ED9E2466EE8B0002C0E1 /* ImagesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewController.swift; sourceTree = "<group>"; };
-		9E75EDA02466F2C10002C0E1 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		9E75EDA22466F2E40002C0E1 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9E75EDA42466F4660002C0E1 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		9E75EDA7246717CE0002C0E1 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				9E75ED9E2466EE8B0002C0E1 /* ImagesCollectionViewController.swift */,
-				9E75EDA02466F2C10002C0E1 /* FilterCollectionViewCell.swift */,
 				9E75EDA22466F2E40002C0E1 /* ImageCollectionViewCell.swift */,
 				9E75EDA42466F4660002C0E1 /* ImagesViewModel.swift */,
 				9E75EDA924676BEC0002C0E1 /* ImageOperations.swift */,
@@ -597,7 +594,6 @@
 				9EC26F9D244DFE06003EF5E3 /* Source.swift in Sources */,
 				9E50BDE12462021E00D543E6 /* FeedsPageViewController.swift in Sources */,
 				9E0622F4245E25250024ABEE /* CatImageUploadCoordinator.swift in Sources */,
-				9E75EDA12466F2C10002C0E1 /* FilterCollectionViewCell.swift in Sources */,
 				9EC26F9B244DFCBA003EF5E3 /* ImageShort.swift in Sources */,
 				9EC26F9F244DFE42003EF5E3 /* Vote.swift in Sources */,
 				9EF4D56824571E37004CFD6B /* LaunchInstructor.swift in Sources */,
