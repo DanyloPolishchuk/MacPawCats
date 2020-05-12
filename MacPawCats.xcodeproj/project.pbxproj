@@ -62,6 +62,8 @@
 		9EC26FFA2450F3CC003EF5E3 /* DataParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26FF92450F3CC003EF5E3 /* DataParameterEncoder.swift */; };
 		9EC26FFC2451DDC4003EF5E3 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26FFB2451DDC4003EF5E3 /* Weight.swift */; };
 		9ECE6274246A172D00131475 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE6273246A172D00131475 /* NotificationNames.swift */; };
+		9ECE6278246A8FB500131475 /* ImagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE6277246A8FB500131475 /* ImagesTableViewController.swift */; };
+		9ECE627A246A961500131475 /* ImageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE6279246A961500131475 /* ImageDetailViewModel.swift */; };
 		9EF00D7D2465A3EE003B1259 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF00D7C2465A3EE003B1259 /* ProfileViewController.swift */; };
 		9EF00D7F2465A75F003B1259 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF00D7E2465A75F003B1259 /* ProfileViewModel.swift */; };
 		9EF4D556245492C3004CFD6B /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4D555245492C3004CFD6B /* StoryboardInitializable.swift */; };
@@ -135,6 +137,8 @@
 		9EC26FF92450F3CC003EF5E3 /* DataParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParameterEncoder.swift; sourceTree = "<group>"; };
 		9EC26FFB2451DDC4003EF5E3 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		9ECE6273246A172D00131475 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		9ECE6277246A8FB500131475 /* ImagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesTableViewController.swift; sourceTree = "<group>"; };
+		9ECE6279246A961500131475 /* ImageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewModel.swift; sourceTree = "<group>"; };
 		9EF00D7C2465A3EE003B1259 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9EF00D7E2465A75F003B1259 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9EF4D555245492C3004CFD6B /* StoryboardInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 			children = (
 				9E424B1A2469E6B9002063DF /* FilterController */,
 				9E75ED9D2466ED830002C0E1 /* ImagesCVC */,
+				9ECE6276246A8DE600131475 /* ImagesTVC */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -428,6 +433,15 @@
 				9EC26FF1244F77D0003EF5E3 /* NetworkManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		9ECE6276246A8DE600131475 /* ImagesTVC */ = {
+			isa = PBXGroup;
+			children = (
+				9ECE6277246A8FB500131475 /* ImagesTableViewController.swift */,
+				9ECE6279246A961500131475 /* ImageDetailViewModel.swift */,
+			);
+			path = ImagesTVC;
 			sourceTree = "<group>";
 		};
 		9EF4D5542454926B004CFD6B /* Coordinator */ = {
@@ -592,6 +606,7 @@
 				9EC26FF4244F9FA9003EF5E3 /* TheCatAPIEndPoint.swift in Sources */,
 				9E042C0524699AAE00B05F6E /* AdditionalLoadingCollectionReusableView.swift in Sources */,
 				9E042C0324699A8900B05F6E /* FilterCollectionReusableView.swift in Sources */,
+				9ECE6278246A8FB500131475 /* ImagesTableViewController.swift in Sources */,
 				9EF00D7D2465A3EE003B1259 /* ProfileViewController.swift in Sources */,
 				9EF4D55D24570D3F004CFD6B /* Coordinator.swift in Sources */,
 				9EC26FED244F6E91003EF5E3 /* EndPointType.swift in Sources */,
@@ -613,6 +628,7 @@
 				9EC26F9D244DFE06003EF5E3 /* Source.swift in Sources */,
 				9E50BDE12462021E00D543E6 /* FeedsPageViewController.swift in Sources */,
 				9E0622F4245E25250024ABEE /* CatImageUploadCoordinator.swift in Sources */,
+				9ECE627A246A961500131475 /* ImageDetailViewModel.swift in Sources */,
 				9EC26F9B244DFCBA003EF5E3 /* ImageShort.swift in Sources */,
 				9EC26F9F244DFE42003EF5E3 /* Vote.swift in Sources */,
 				9E424B1C2469EBCF002063DF /* FilterViewController.swift in Sources */,
