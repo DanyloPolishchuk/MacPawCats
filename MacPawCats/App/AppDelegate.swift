@@ -30,12 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - Setup methods
     //
     func setupCategoriesAndBreeds(){
+        let areDefaultKeysSaved = UserDefaults.standard.bool(forKey: areDefaultKeysSavedKey)
         let networkManager = NetworkManager()
         networkManager.getCategories { (categories, error) in
-            if let categories = categories, let categoriesData = try? JSONEncoder().encode([categories]) {
+            if let categories = categories, let categoriesData = try? JSONEncoder().encode(categories) {
                 UserDefaults.standard.set(categoriesData, forKey: categoriesKey)
                 if let defaultCategory = categories.first, let defaultCategoryData = try? JSONEncoder().encode(defaultCategory) {
-                    UserDefaults.standard.set(defaultCategoryData, forKey: categoryKey)
+                    if !areDefaultKeysSaved {
+                        UserDefaults.standard.set(defaultCategoryData, forKey: categoryKey)
+                    }
                 }
             }
         }
@@ -43,7 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let breedsShort = breeds?.map({ BreedShort(id: $0.id, name: $0.name) }), let breedsShortData = try? JSONEncoder().encode(breedsShort) {
                 UserDefaults.standard.set(breedsShortData, forKey: breedsKey)
                 if let defaultBreed = breedsShort.first, let defaultBreedData = try? JSONEncoder().encode(defaultBreed) {
-                    UserDefaults.standard.set(defaultBreedData, forKey: breedKey)
+                    if !areDefaultKeysSaved {
+                        UserDefaults.standard.set(defaultBreedData, forKey: breedKey)
+                    }
                 }
             }
         }
@@ -53,13 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if areDefaultKeysSaved {
             return
         }else {
-            UserDefaults.standard.setValue(ImageType.all.rawValue, forKey: allTypeKey)
-            UserDefaults.standard.setValue(ImageType.all.rawValue, forKey: breedTypeKey)
-            UserDefaults.standard.setValue(ImageType.all.rawValue, forKey: categoryTypeKey)
+            UserDefaults.standard.set(ImageType.all.rawValue, forKey: allTypeKey)
+            UserDefaults.standard.set(ImageType.all.rawValue, forKey: breedTypeKey)
+            UserDefaults.standard.set(ImageType.all.rawValue, forKey: categoryTypeKey)
             
-            UserDefaults.standard.setValue(Order.random.rawValue, forKey: allOrderKey)
-            UserDefaults.standard.setValue(Order.random.rawValue, forKey: breedOrderKey)
-            UserDefaults.standard.setValue(Order.random.rawValue, forKey: categoryOrderKey)
+            UserDefaults.standard.set(Order.random.rawValue, forKey: allOrderKey)
+            UserDefaults.standard.set(Order.random.rawValue, forKey: breedOrderKey)
+            UserDefaults.standard.set(Order.random.rawValue, forKey: categoryOrderKey)
             
             UserDefaults.standard.set(true, forKey: areDefaultKeysSavedKey)
         }

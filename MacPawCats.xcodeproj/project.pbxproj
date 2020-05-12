@@ -23,6 +23,8 @@
 		9E1355E42458871300C480D7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1355E32458871300C480D7 /* RoundedButton.swift */; };
 		9E1355E624588CF600C480D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1355E524588CF600C480D7 /* LoginViewController.swift */; };
 		9E1355E82458A9AA00C480D7 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1355E72458A9AA00C480D7 /* LoginCoordinator.swift */; };
+		9E424B1C2469EBCF002063DF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E424B1B2469EBCF002063DF /* FilterViewController.swift */; };
+		9E424B202469F77A002063DF /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E424B1F2469F77A002063DF /* FilterViewModel.swift */; };
 		9E50BDDA24602F3A00D543E6 /* CatImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BDD924602F3A00D543E6 /* CatImageUploadViewController.swift */; };
 		9E50BDDC2460311E00D543E6 /* CatImageUploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BDDB2460311E00D543E6 /* CatImageUploadViewModel.swift */; };
 		9E50BDDE2461BF0200D543E6 /* CatsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BDDD2461BF0200D543E6 /* CatsFeedViewController.swift */; };
@@ -59,6 +61,7 @@
 		9EC26FF82450C8C6003EF5E3 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26FF72450C8C6003EF5E3 /* URLParameterEncoder.swift */; };
 		9EC26FFA2450F3CC003EF5E3 /* DataParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26FF92450F3CC003EF5E3 /* DataParameterEncoder.swift */; };
 		9EC26FFC2451DDC4003EF5E3 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26FFB2451DDC4003EF5E3 /* Weight.swift */; };
+		9ECE6274246A172D00131475 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE6273246A172D00131475 /* NotificationNames.swift */; };
 		9EF00D7D2465A3EE003B1259 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF00D7C2465A3EE003B1259 /* ProfileViewController.swift */; };
 		9EF00D7F2465A75F003B1259 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF00D7E2465A75F003B1259 /* ProfileViewModel.swift */; };
 		9EF4D556245492C3004CFD6B /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4D555245492C3004CFD6B /* StoryboardInitializable.swift */; };
@@ -91,6 +94,8 @@
 		9E1355E32458871300C480D7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		9E1355E524588CF600C480D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9E1355E72458A9AA00C480D7 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		9E424B1B2469EBCF002063DF /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		9E424B1F2469F77A002063DF /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		9E50BDD924602F3A00D543E6 /* CatImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageUploadViewController.swift; sourceTree = "<group>"; };
 		9E50BDDB2460311E00D543E6 /* CatImageUploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageUploadViewModel.swift; sourceTree = "<group>"; };
 		9E50BDDD2461BF0200D543E6 /* CatsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsFeedViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +134,7 @@
 		9EC26FF72450C8C6003EF5E3 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		9EC26FF92450F3CC003EF5E3 /* DataParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParameterEncoder.swift; sourceTree = "<group>"; };
 		9EC26FFB2451DDC4003EF5E3 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
+		9ECE6273246A172D00131475 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		9EF00D7C2465A3EE003B1259 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9EF00D7E2465A75F003B1259 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9EF4D555245492C3004CFD6B /* StoryboardInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
@@ -254,6 +260,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		9E424B1A2469E6B9002063DF /* FilterController */ = {
+			isa = PBXGroup;
+			children = (
+				9E424B1B2469EBCF002063DF /* FilterViewController.swift */,
+				9E424B1F2469F77A002063DF /* FilterViewModel.swift */,
+			);
+			path = FilterController;
+			sourceTree = "<group>";
+		};
 		9E50BDDF246201BD00D543E6 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +280,7 @@
 		9E75ED9C2466ED5E0002C0E1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9E424B1A2469E6B9002063DF /* FilterController */,
 				9E75ED9D2466ED830002C0E1 /* ImagesCVC */,
 			);
 			path = Shared;
@@ -286,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				9E75EDA7246717CE0002C0E1 /* UserDefaultsKeys.swift */,
+				9ECE6273246A172D00131475 /* NotificationNames.swift */,
 			);
 			path = Names;
 			sourceTree = "<group>";
@@ -547,6 +564,7 @@
 				9EC26FFA2450F3CC003EF5E3 /* DataParameterEncoder.swift in Sources */,
 				9EF4D56624571A90004CFD6B /* UIViewController+Presentable.swift in Sources */,
 				9EC26FE5244F5053003EF5E3 /* NetworkLogger.swift in Sources */,
+				9ECE6274246A172D00131475 /* NotificationNames.swift in Sources */,
 				9E1355E624588CF600C480D7 /* LoginViewController.swift in Sources */,
 				9E0622F0245E24D50024ABEE /* CatsFeedCoordinator.swift in Sources */,
 				9E0622EB245DB3550024ABEE /* MainCoordinator.swift in Sources */,
@@ -564,6 +582,7 @@
 				9EC26FF82450C8C6003EF5E3 /* URLParameterEncoder.swift in Sources */,
 				9EC26F95244DF9C2003EF5E3 /* Fact.swift in Sources */,
 				9EC26F78244DD6D6003EF5E3 /* AppDelegate.swift in Sources */,
+				9E424B202469F77A002063DF /* FilterViewModel.swift in Sources */,
 				9EF4D55B24570CA6004CFD6B /* Presentable.swift in Sources */,
 				9EC26F82244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld in Sources */,
 				9E50BDDC2460311E00D543E6 /* CatImageUploadViewModel.swift in Sources */,
@@ -596,6 +615,7 @@
 				9E0622F4245E25250024ABEE /* CatImageUploadCoordinator.swift in Sources */,
 				9EC26F9B244DFCBA003EF5E3 /* ImageShort.swift in Sources */,
 				9EC26F9F244DFE42003EF5E3 /* Vote.swift in Sources */,
+				9E424B1C2469EBCF002063DF /* FilterViewController.swift in Sources */,
 				9EF4D56824571E37004CFD6B /* LaunchInstructor.swift in Sources */,
 				9EF4D56024570DC0004CFD6B /* DeepLinkOption.swift in Sources */,
 				9EF4D558245709AA004CFD6B /* NetworkRouter.swift in Sources */,

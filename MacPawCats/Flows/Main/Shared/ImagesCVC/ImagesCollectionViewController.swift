@@ -34,6 +34,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRefreshControl()
+        setupNofitications()
         
         // initial load
         setupInitialLoadingView()
@@ -58,11 +59,25 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
         self.view.addSubview(loadingView ?? UIView())
     }
     private func removeInitialLoadingView(){
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.loadingView?.alpha = 0
         }) { (animationsFinishedBeforeCompletion) in
             self.loadingView?.removeFromSuperview()
         }
+    }
+    private func setupNofitications(){
+        let name: Notification.Name
+        switch viewModel.type {
+        case .All:
+            name = Notification.Name.reloadAllImagesScreenDataSource
+        case .Breeds:
+            name = Notification.Name.reloadBreedImagesScreenDataSource
+        case .Categories:
+            name = Notification.Name.reloadCategoryImagesScreenDataSource
+        default:
+            name = Notification.Name.reloadAllImagesScreenDataSource
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh), name: name, object: nil)
     }
     
     //MARK: - Response Alert methods

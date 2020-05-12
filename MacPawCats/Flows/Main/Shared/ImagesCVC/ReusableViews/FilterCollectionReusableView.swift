@@ -70,15 +70,8 @@ class FilterCollectionReusableView: UICollectionReusableView {
     
     //MARK: - Actions
     //
-    // if filter value changed - reload CVC
-    @IBAction func typeAction(_ sender: UIButton) {
-        print("typeAction")
-    }
-    @IBAction func orderAction(_ sender: Any) {
-        print("orderAction")
-    }
-    @IBAction func categoryAction(_ sender: Any) {
-        print("\(type == .Categories ? "category" : "breed")Action")
+    @IBAction func showFilterAction(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name.showFilterScreen, object: self.type.rawValue)
     }
     
 }

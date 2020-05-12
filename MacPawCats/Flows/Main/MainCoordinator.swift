@@ -28,6 +28,22 @@ final class MainCoordinator: BaseCoordinator {
     //
     init(router: RouterProtocol) {
         self.router = router
+        super.init()
+        self.subscribeForNotifications()
+    }
+    
+    //MARK: - Notification methods
+    //
+    private func subscribeForNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(presentFilterController(_:)), name: Notification.Name.showFilterScreen, object: nil)
+    }
+    @objc private func presentFilterController(_ notification: Notification){
+        print("presentFilterController called")
+        let filterVC = FilterViewController.initFromStoryboard()
+        let typeString = notification.object as? String ?? ImageSearchType.All.rawValue
+        let type = ImageSearchType(rawValue: typeString) ?? ImageSearchType.All
+        filterVC.viewModel = FilterViewModel(type: type)
+        self.tabBarController.present(filterVC, animated: true)
     }
     
     //MARK: - Coordinator
@@ -71,13 +87,15 @@ final class MainCoordinator: BaseCoordinator {
     
 }
 
+//MARK: - UITabBarControllerDelegate
+//
 extension MainCoordinator: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         switch viewController {
         case catsFeedRootNavigationController:
             feedCoordinator.scrollToTop()
         case profileRootNavigationController:
-            // implement scrollToTop for currently presented Uploads/Favs/Votes CVC
+            //TODO: implement scrollToTop for currently presented Uploads/Favs/Votes CVC
             break
         default:
             break
