@@ -40,6 +40,16 @@ class ImagesViewModel {
     init(type: ImagesCollectionScreenType) {
         self.type = type
     }
+    init(uploadedImages: [ImageShort]) {
+        self.type = ImagesCollectionScreenType.Uploaded
+        self.uploadedImages = uploadedImages
+        self.imageRecords = uploadedImages.map{ImageRecord(url: URL(string: $0.url)!)}
+    }
+    init(favourites: [Favourite]) {
+        self.type = ImagesCollectionScreenType.Favourites
+        self.favourites = favourites
+        self.imageRecords = favourites.map{ImageRecord(url: URL(string: $0.image.url)!)}
+    }
     
     //MARK: - collectionView methods
     //
@@ -54,6 +64,9 @@ class ImagesViewModel {
         default:
             return images?.count ?? 0
         }
+    }
+    func getTitle() -> String? {
+        return type.rawValue
     }
         
     //MARK: - Network methods

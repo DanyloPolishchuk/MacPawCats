@@ -11,7 +11,6 @@ import UIKit
 protocol ProfileViewControllerProtocol: class {
     var onDidSelectUploadedImages: ((_ arr: [ImageShort])->Void)? {get set}
     var onDidSelectFavourites: ((_ arr: [Favourite])->Void)? {get set}
-    var onDidSelectVotes: ((_ arr: [Vote])->Void)? {get set}
 }
 
 class ProfileViewController: UIViewController, StoryboardInitializable, ProfileViewControllerProtocol {
@@ -22,8 +21,6 @@ class ProfileViewController: UIViewController, StoryboardInitializable, ProfileV
     
     var onDidSelectUploadedImages: (([ImageShort]) -> Void)?
     var onDidSelectFavourites: (([Favourite]) -> Void)?
-    var onDidSelectVotes: (([Vote]) -> Void)?
-    
     
     //MARK: - Outlets
     //
@@ -40,16 +37,17 @@ class ProfileViewController: UIViewController, StoryboardInitializable, ProfileV
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.allowsSelection = false
         
         viewModel.getUploadedImagesCount {
             self.tableView.reloadData()
+            self.tableView.allowsSelection = true
         }
         viewModel.getFavouritesCount {
             self.tableView.reloadData()
+            self.tableView.allowsSelection = true
         }
-        viewModel.getVotesCount {
-            self.tableView.reloadData()
-        }
+
     }
 }
 
@@ -57,7 +55,7 @@ class ProfileViewController: UIViewController, StoryboardInitializable, ProfileV
 //
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -70,14 +68,11 @@ extension ProfileViewController: UITableViewDataSource {
         
         switch indexPath.row {
         case 0: // uploaded
-            cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
+            cell.imageView?.image = UIImage(systemName: "square.and.arrow.up.fill")
             cell.textLabel?.text = "Uploaded images"
         case 1: // favourited
             cell.imageView?.image = UIImage(systemName: "bookmark.fill")
             cell.textLabel?.text = "Favourited images"
-        case 2: // votes
-            cell.imageView?.image = UIImage(systemName: "arrow.up.square.fill")
-            cell.textLabel?.text = "Voted images"
         default:
             break
         }
@@ -91,13 +86,12 @@ extension ProfileViewController: UITableViewDataSource {
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard viewModel.counts[indexPath.row] != nil else {return}
         switch indexPath.row {
         case 0:
             onDidSelectUploadedImages?(viewModel.uploadedImages)
         case 1:
             onDidSelectFavourites?(viewModel.favouritedImages)
-        case 2:
-            onDidSelectVotes?(viewModel.votes)
         default:
             break
         }
