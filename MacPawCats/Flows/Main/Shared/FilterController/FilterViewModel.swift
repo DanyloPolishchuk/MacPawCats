@@ -187,7 +187,6 @@ class FilterViewModel {
                 UserDefaults.standard.set(currentType, forKey: allTypeKey)
                 UserDefaults.standard.set(currentOrder, forKey: allOrderKey)
                 NotificationCenter.default.post(name: Notification.Name.reloadAllImagesScreenDataSource, object: nil)
-                completion()
             }
         case .Breeds:
             if currentOrder != breedOrder || currentType != breedType || currentBreed.id != breed.id {
@@ -197,7 +196,6 @@ class FilterViewModel {
                     UserDefaults.standard.set(currentBreedData, forKey: breedKey)
                 }
                 NotificationCenter.default.post(name: Notification.Name.reloadBreedImagesScreenDataSource, object: nil)
-                completion()
             }
         case .Categories:
             if currentOrder != categoryOrder || currentType != categoryType || currentCategory.id != category.id {
@@ -207,9 +205,9 @@ class FilterViewModel {
                     UserDefaults.standard.set(currentCategoryData, forKey: categoryKey)
                 }
                 NotificationCenter.default.post(name: Notification.Name.reloadCategoryImagesScreenDataSource, object: nil)
-                completion()
             }
         }
+        completion()
     }
     
 }

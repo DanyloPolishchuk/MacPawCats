@@ -38,7 +38,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
         setupNofitications()
         
         // initial load
-        if viewModel.type == .All || viewModel.type == .Breeds || viewModel.type == .Categories {
+        if viewModel.isFeed {
             setupInitialLoadingView()
             viewModel.loadAdditionalImages { (error) in
                 self.removeInitialLoadingView()
@@ -50,7 +50,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     //MARK: - Setup methods
     //
     private func setupRefreshControl(){
-        if viewModel.type == .All || viewModel.type == .Breeds || viewModel.type == .Categories {
+        if viewModel.isFeed {
             collectionView.refreshControl = UIRefreshControl()
             collectionView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         }
@@ -168,7 +168,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     //MARK: - UICollectionViewDelegate
     //
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.item == viewModel.getNumberOfItems() - 1 && (viewModel.type == .All || viewModel.type == .Breeds || viewModel.type == .Categories) {
+        if indexPath.item == viewModel.getNumberOfItems() - 1 && viewModel.isFeed {
             viewModel.loadAdditionalImages { (error) in
                 self.handleResponse(error: error)
             }
@@ -179,7 +179,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
         print("didSelectItemAt indexPath: \(indexPath)")
     }
     override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell, (viewModel.type == .All || viewModel.type == .Breeds || viewModel.type == .Categories){
+        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell, viewModel.isFeed {
             cell.highlight()
         }
     }
@@ -216,7 +216,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
 extension ImagesCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if (viewModel.type == .All || viewModel.type == .Breeds || viewModel.type == .Categories) {
+        if viewModel.isFeed {
             return CGSize(width: collectionView.frame.width, height: 55)
         }
         return CGSize.zero
@@ -227,7 +227,7 @@ extension ImagesCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if self.viewModel.isLoading || (viewModel.type == .Favourites || viewModel.type == .Uploaded || viewModel.type == .Votes){
+        if self.viewModel.isLoading || !viewModel.isFeed {
             return CGSize.zero
         }
         return CGSize(width: collectionView.frame.width, height: 100)

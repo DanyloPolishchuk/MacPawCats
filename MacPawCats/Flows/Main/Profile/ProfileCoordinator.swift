@@ -39,13 +39,11 @@ final class ProfileCoordinator: BaseCoordinator {
     }
     
     func showUploadedImagesScreen(_ uploadedImages: [ImageShort]) {
-        print("showUploadedImagesScreen")
         let imagesCVC = ImagesCollectionViewController.initFromStoryboard()
         imagesCVC.viewModel = ImagesViewModel(uploadedImages: uploadedImages)
         self.router.push(imagesCVC)
     }
     func showFavouritesScreen(_ favourites: [Favourite]) {
-        print("showFavouritesScreen")
         let imagesCVC = ImagesCollectionViewController.initFromStoryboard()
         imagesCVC.viewModel = ImagesViewModel(favourites: favourites)
         self.router.push(imagesCVC)
