@@ -14,8 +14,7 @@ class ProfileViewModel {
     
     var uploadedImages = [ImageShort]()
     var favouritedImages = [Favourite]()
-    var votes = [Vote]()
-    var counts: [Int?] = [nil, nil, nil]
+    var counts: [Int?] = [nil, nil]
     
     func getUserId() -> String {
         return self.networkManager.subId
@@ -46,21 +45,6 @@ class ProfileViewModel {
                 }
                 let count = favourites?.count ?? 0
                 self.counts[1] = count
-                DispatchQueue.main.async {
-                    completion()
-                }
-            }
-        }
-    }
-    
-    func getVotesCount(completion: @escaping () -> () ) {
-        DispatchQueue.global(qos: .utility).async {
-            self.networkManager.getVotes { (votes, error) in
-                if let votes = votes {
-                    self.votes = votes
-                }
-                let count = votes?.count ?? 0
-                self.counts[2] = count
                 DispatchQueue.main.async {
                     completion()
                 }

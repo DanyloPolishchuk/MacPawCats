@@ -35,20 +35,18 @@ final class ProfileCoordinator: BaseCoordinator {
         profileVC.onDidSelectFavourites = { favourites in
             self.showFavouritesScreen(favourites)
         }
-        profileVC.onDidSelectVotes = { votes in
-            self.showVotesScreen(votes)
-        }
         self.router.push(profileVC)
     }
     
     func showUploadedImagesScreen(_ uploadedImages: [ImageShort]) {
-        print("showUploadedImagesScreen")
+        let imagesCVC = ImagesCollectionViewController.initFromStoryboard()
+        imagesCVC.viewModel = ImagesViewModel(uploadedImages: uploadedImages)
+        self.router.push(imagesCVC)
     }
     func showFavouritesScreen(_ favourites: [Favourite]) {
-        print("showFavouritesScreen")
-    }
-    func showVotesScreen(_ votes: [Vote]) {
-        print("showVotesScreen")
+        let imagesCVC = ImagesCollectionViewController.initFromStoryboard()
+        imagesCVC.viewModel = ImagesViewModel(favourites: favourites)
+        self.router.push(imagesCVC)
     }
     
 }

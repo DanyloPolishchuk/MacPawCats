@@ -33,22 +33,27 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTitle()
         setupRefreshControl()
         setupNofitications()
         
         // initial load
-        setupInitialLoadingView()
-        viewModel.loadAdditionalImages { (error) in
-            self.removeInitialLoadingView()
-            self.handleResponse(error: error)
+        if viewModel.isFeed {
+            setupInitialLoadingView()
+            viewModel.loadAdditionalImages { (error) in
+                self.removeInitialLoadingView()
+                self.handleResponse(error: error)
+            }
         }
     }
     
     //MARK: - Setup methods
     //
     private func setupRefreshControl(){
-        collectionView.refreshControl = UIRefreshControl()
-        collectionView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        if viewModel.isFeed {
+            collectionView.refreshControl = UIRefreshControl()
+            collectionView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        }
     }
     private func setupInitialLoadingView(){
         loadingView = UIView(frame: self.view.frame)
@@ -75,9 +80,12 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
         case .Categories:
             name = Notification.Name.reloadCategoryImagesScreenDataSource
         default:
-            name = Notification.Name.reloadAllImagesScreenDataSource
+            name = Notification.Name(rawValue: "")
         }
         NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh), name: name, object: nil)
+    }
+    private func setupTitle(){
+        self.title = viewModel.getTitle()
     }
     
     //MARK: - Response Alert methods
@@ -160,18 +168,18 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     //MARK: - UICollectionViewDelegate
     //
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.item == viewModel.getNumberOfItems() - 1 {
+        if indexPath.item == viewModel.getNumberOfItems() - 1 && viewModel.isFeed {
             viewModel.loadAdditionalImages { (error) in
                 self.handleResponse(error: error)
             }
         }
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // if imageCell -> detailPresentationCallback to coordinator
+        //TODO: present imageDetailTVC
         print("didSelectItemAt indexPath: \(indexPath)")
     }
     override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
+        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell, viewModel.isFeed {
             cell.highlight()
         }
     }
@@ -208,7 +216,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
 extension ImagesCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if (viewModel.type == .All || viewModel.type == .Breeds || viewModel.type == .Categories) {
+        if viewModel.isFeed {
             return CGSize(width: collectionView.frame.width, height: 55)
         }
         return CGSize.zero
@@ -219,7 +227,7 @@ extension ImagesCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if self.viewModel.isLoading {
+        if self.viewModel.isLoading || !viewModel.isFeed {
             return CGSize.zero
         }
         return CGSize(width: collectionView.frame.width, height: 100)

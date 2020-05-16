@@ -16,6 +16,8 @@ class ImagesViewModel {
     var isLoading = false // first load / reload
     
     let type: ImagesCollectionScreenType
+    let isFeed: Bool
+    
     let pendingOperations = PendingOperations()
     let networkManager = NetworkManager()
     
@@ -26,19 +28,24 @@ class ImagesViewModel {
     var images: [ImageShort]?
     var imageRecords = [ImageRecord]()
     
-    var numberOfSections: Int {
-        switch self.type {
-        case .All, .Breeds, .Categories:
-            return 2
-        case .Uploaded, .Favourites, .Votes:
-            return 1
-        }
-    }
       
     //MARK: - inits
     //
     init(type: ImagesCollectionScreenType) {
         self.type = type
+        self.isFeed = type == .All || type == .Breeds || type == .Categories
+    }
+    init(uploadedImages: [ImageShort]) {
+        self.type = ImagesCollectionScreenType.Uploaded
+        self.isFeed = false
+        self.uploadedImages = uploadedImages
+        self.imageRecords = uploadedImages.map{ImageRecord(url: URL(string: $0.url)!)}
+    }
+    init(favourites: [Favourite]) {
+        self.type = ImagesCollectionScreenType.Favourites
+        self.isFeed = false
+        self.favourites = favourites
+        self.imageRecords = favourites.map{ImageRecord(url: URL(string: $0.image.url)!)}
     }
     
     //MARK: - collectionView methods
@@ -54,6 +61,9 @@ class ImagesViewModel {
         default:
             return images?.count ?? 0
         }
+    }
+    func getTitle() -> String? {
+        return type.rawValue
     }
         
     //MARK: - Network methods
@@ -117,15 +127,12 @@ class ImagesViewModel {
     //MARK: - Operations management
     //
     func suspendAllOperations(){
-        print("suspendAllOperations called")
         pendingOperations.downloadQueue.isSuspended = true
     }
     func resumeAllOperations(){
-        print("resumeAllOperations called")
         pendingOperations.downloadQueue.isSuspended = false
     }
     func loadImagesForVisibleItems(collectionView: UICollectionView) {
-        print("loadImagesForVisibleItems called")
 
         let visibleIndexPaths = Set(collectionView.indexPathsForVisibleItems)
         
@@ -149,7 +156,6 @@ class ImagesViewModel {
         
     }
     func startDownload(for imageRecord: ImageRecord, at indexPath: IndexPath, collectionView: UICollectionView) {
-        print("startDownload for imageRecord: \(imageRecord), at indexPath: \(indexPath) called")
         guard pendingOperations.downloadsInProgress[indexPath] == nil else {return}
         let downloader = ImageDownloader(imageRecord)
         downloader.completionBlock = {
