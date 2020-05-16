@@ -38,7 +38,13 @@ class ProfileViewController: UIViewController, StoryboardInitializable, ProfileV
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.allowsSelection = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        clearOnAppear()
         
+        viewModel.resetCounts()
         viewModel.getUploadedImagesCount {
             self.tableView.reloadData()
             self.tableView.allowsSelection = true
@@ -47,7 +53,12 @@ class ProfileViewController: UIViewController, StoryboardInitializable, ProfileV
             self.tableView.reloadData()
             self.tableView.allowsSelection = true
         }
-
+    }
+    
+    private func clearOnAppear(){
+        for indexPath in tableView.indexPathsForSelectedRows ?? [] {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 }
 

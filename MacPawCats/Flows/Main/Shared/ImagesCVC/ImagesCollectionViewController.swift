@@ -175,8 +175,33 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
         }
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO: present imageDetailTVC
-        print("didSelectItemAt indexPath: \(indexPath)")
+        
+        let imageDetailVC = ImagesTableViewController.initFromStoryboard()
+        let detailType: ImageDetailType
+        var imageId: String = "1"
+        switch self.viewModel.type {
+        case .Uploaded:
+            detailType = .upload
+            if let uploadedImageId = viewModel.uploadedImages?[indexPath.row].id {
+                imageId = uploadedImageId
+            }
+        case .Favourites:
+            detailType = .favourite
+            if let favImageId = viewModel.favourites?[indexPath.row].image.id {
+                imageId = favImageId
+            }
+        case .Votes:
+            detailType = .vote
+        default:
+            detailType = .image
+            if let defaultImageId = viewModel.images?[indexPath.row].id {
+                imageId = defaultImageId
+            }
+        }
+        let imageRecord = viewModel.imageRecords[indexPath.row]
+        imageDetailVC.viewModel = ImageDetailViewModel(type: detailType, imageId: imageId, imageRecord: imageRecord)
+        self.navigationController?.pushViewController(imageDetailVC, animated: true)
+        
     }
     override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell, viewModel.isFeed {
@@ -206,7 +231,7 @@ class ImagesCollectionViewController: UICollectionViewController, StoryboardInit
     }
     
     func scrollToTop(){
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        collectionView.setContentOffset(.zero, animated: true)
     }
     
 }

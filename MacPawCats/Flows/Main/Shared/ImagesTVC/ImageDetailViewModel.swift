@@ -21,33 +21,31 @@ class ImageDetailViewModel {
     //MARK: - Properties
     //
     var type: ImageDetailType
+    let imageId: String
+    let imageRecord: ImageRecord
+    var isFav: Bool
+    let isUploaded: Bool
+    
     let networkManager = NetworkManager()
     
     //MARK: - inits
     //
-    init(type: ImageDetailType) {
+    init(type: ImageDetailType, imageId: String, imageRecord: ImageRecord) {
         self.type = type
+        self.imageId = imageId
+        self.imageRecord = imageRecord
+        self.isFav = type == .favourite
+        self.isUploaded = type == .upload
     }
     
     //MARK: - Network methods
     //
     
-    // getFull image
-    // upVote
-    //downVote
-    //deleteVote
-    //Fav
-    //deleteFav
-    //deleteUploadedImage
-
-    //TODO: delete
-    let tmpID = 1
-    
     //MARK: Votes
     //
     func upVote(completion: @escaping (_ error: String?) -> ()) {
         DispatchQueue.global(qos: .utility).async {
-            self.networkManager.voteImage(imageId: "\(self.tmpID)", value: 1) { (error) in
+            self.networkManager.voteImage(imageId: self.imageId, value: 1) { (error) in
                 DispatchQueue.main.async {
                     completion(error)
                 }
@@ -56,16 +54,7 @@ class ImageDetailViewModel {
     }
     func downVote(completion: @escaping (_ error: String?) -> ()) {
         DispatchQueue.global(qos: .utility).async {
-            self.networkManager.voteImage(imageId: "\(self.tmpID)", value: 0) { (error) in
-                DispatchQueue.main.async {
-                    completion(error)
-                }
-            }
-        }
-    }
-    func deleteVote(completion: @escaping (_ error: String?) -> ()) {
-        DispatchQueue.global(qos: .utility).async {
-            self.networkManager.deleteVote(voteId: self.tmpID) { (error) in
+            self.networkManager.voteImage(imageId: self.imageId, value: 0) { (error) in
                 DispatchQueue.main.async {
                     completion(error)
                 }
@@ -74,12 +63,36 @@ class ImageDetailViewModel {
     }
     //MARK: Favs
     //
+    func favourite(completion: @escaping (_ error: String?) -> ()){
+        DispatchQueue.global(qos: .utility).async {
+            self.networkManager.favouriteImage(imageId: self.imageId) { (error) in
+                DispatchQueue.main.async {
+                    if error == nil {
+                        self.isFav = true
+                    }
+                    completion(error)
+                }
+            }
+        }
+    }
+    
+    //MARK: Image
+    //
+    func deleteImage(completion: @escaping (_ error: String?) -> ()) {
+        DispatchQueue.global(qos: .utility).async {
+            self.networkManager.deleteImage(imageId: self.imageId) { (error) in
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+        }
+    }
     
     //MARK: Other
     //
-    func loadImageFrom(url: URL, completion: @escaping (_ image: UIImage?) -> () ) {
+    func loadImage(completion: @escaping (_ image: UIImage?) -> () ) {
         DispatchQueue.global(qos: .utility).async {
-            if let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) {
+            if let imageData = try? Data(contentsOf: self.imageRecord.url), let image = UIImage(data: imageData) {
                 DispatchQueue.main.async {
                     completion(image)
                 }

@@ -20,6 +20,10 @@ class ProfileViewModel {
         return self.networkManager.subId
     }
     
+    func resetCounts(){
+        self.counts = [nil, nil]
+    }
+    
     func getUploadedImagesCount(completion: @escaping () -> () ) {
         DispatchQueue.global(qos: .utility).async {
             
