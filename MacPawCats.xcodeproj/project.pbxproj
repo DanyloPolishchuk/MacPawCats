@@ -39,7 +39,6 @@
 		9E83C28524718A8000A5C959 /* RoundUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E83C28424718A8000A5C959 /* RoundUIView.swift */; };
 		9EC26F78244DD6D6003EF5E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26F77244DD6D6003EF5E3 /* AppDelegate.swift */; };
 		9EC26F7F244DD6D6003EF5E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EC26F7D244DD6D6003EF5E3 /* Main.storyboard */; };
-		9EC26F82244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26F80244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld */; };
 		9EC26F84244DD6D8003EF5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EC26F83244DD6D8003EF5E3 /* Assets.xcassets */; };
 		9EC26F87244DD6D8003EF5E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EC26F85244DD6D8003EF5E3 /* LaunchScreen.storyboard */; };
 		9EC26F91244DF4E5003EF5E3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26F90244DF4E5003EF5E3 /* Category.swift */; };
@@ -116,7 +115,6 @@
 		9EC26F74244DD6D6003EF5E3 /* MacPawCats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPawCats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC26F77244DD6D6003EF5E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EC26F7E244DD6D6003EF5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9EC26F81244DD6D6003EF5E3 /* MacPawCats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MacPawCats.xcdatamodel; sourceTree = "<group>"; };
 		9EC26F83244DD6D8003EF5E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9EC26F86244DD6D8003EF5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9EC26F88244DD6D8003EF5E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -358,7 +356,6 @@
 				9E1355DA2458779F00C480D7 /* Flows */,
 				9E1355E2245886BB00C480D7 /* Components */,
 				9EC26FA5244E2248003EF5E3 /* Resources */,
-				9EC26F80244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld */,
 			);
 			path = MacPawCats;
 			sourceTree = "<group>";
@@ -617,7 +614,6 @@
 				9EC26F78244DD6D6003EF5E3 /* AppDelegate.swift in Sources */,
 				9E424B202469F77A002063DF /* FilterViewModel.swift in Sources */,
 				9EF4D55B24570CA6004CFD6B /* Presentable.swift in Sources */,
-				9EC26F82244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld in Sources */,
 				9E50BDDC2460311E00D543E6 /* CatImageUploadViewModel.swift in Sources */,
 				9EF4D556245492C3004CFD6B /* StoryboardInitializable.swift in Sources */,
 				9E75EDA8246717CE0002C0E1 /* UserDefaultsKeys.swift in Sources */,
@@ -860,19 +856,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		9EC26F80244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9EC26F81244DD6D6003EF5E3 /* MacPawCats.xcdatamodel */,
-			);
-			currentVersion = 9EC26F81244DD6D6003EF5E3 /* MacPawCats.xcdatamodel */;
-			path = MacPawCats.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 9EC26F6C244DD6D6003EF5E3 /* Project object */;
 }

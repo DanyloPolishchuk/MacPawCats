@@ -76,7 +76,6 @@ class LoginViewController: UIViewController, StoryboardInitializable {
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing")
         guard let userId = textField.text else {return}
         let validUserId = userId.replacingOccurrences(of: " ", with: "")
         viewModel.userId = validUserId

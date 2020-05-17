@@ -38,7 +38,6 @@ final class MainCoordinator: BaseCoordinator {
         NotificationCenter.default.addObserver(self, selector: #selector(presentFilterController(_:)), name: Notification.Name.showFilterScreen, object: nil)
     }
     @objc private func presentFilterController(_ notification: Notification){
-        print("presentFilterController called")
         let filterVC = FilterViewController.initFromStoryboard()
         let typeString = notification.object as? String ?? ImageSearchType.All.rawValue
         let type = ImageSearchType(rawValue: typeString) ?? ImageSearchType.All
