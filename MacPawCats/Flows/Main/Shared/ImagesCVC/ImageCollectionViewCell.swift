@@ -30,13 +30,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
         case .new:
             activityIndicator.startAnimating()
         }
-        //TODO: implement   (up/downvote, fav, (optionally later uploaded)) imageView(s) isHidden and image properties setup
         favouriteStatusImageView.isHidden = true
         voteStatusImageView.isHidden = true
     }
-    
-    //TODO: implement setup methods for FAV,UPLOAD,VOTE
-    
+        
     func highlight(){
         darkenerView.alpha = 0.4
     }

@@ -11,4 +11,5 @@ import Foundation
 enum DeepLinkOption {
     // case imageUploadedByYouLiked
     // case someCatUserhaveSentYouAMessage
+    case networkAccessibilityScreen
 }

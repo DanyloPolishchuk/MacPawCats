@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var appCoordinator: Coordinator = AppCoordinator(router: Router(rootController: self.rootController))
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setupNetworkChecker()
         setupCategoriesAndBreeds()
         setupDefaultFilterParameters()
-        appCoordinator.start(with: nil)
+        setupNetworkChecker()
+//        appCoordinator.start(with: nil)
         return true
     }
     
@@ -77,13 +77,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pathMonitor.pathUpdateHandler = { path in
             switch path.status {
             case .requiresConnection, .unsatisfied:
-                //TODO: tell coordinator to show network inaccessibility message on current VC
-                print("Network status \(path.status)")
-                break
+                DispatchQueue.main.async {
+                    self.appCoordinator.start(with: .networkAccessibilityScreen)
+                }
             default:
-                //TODO: tell coordinator to reload data on current VC if needed (if data is not loaded on current VC)
-                print("Network status \(path.status)")
-                break
+                DispatchQueue.main.async {
+                    self.appCoordinator.start(with: nil)
+                }
             }
         }
         let queue = DispatchQueue.global()

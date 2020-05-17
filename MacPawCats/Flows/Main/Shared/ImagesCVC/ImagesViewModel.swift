@@ -147,7 +147,6 @@ class ImagesViewModel {
             pendingOperations.downloadsInProgress.removeValue(forKey: indexPath)
         }
         for indexPath in toStart {
-            //TODO: refactor so it works with all types
             if let imageShortToDownload = images?[indexPath.row], let url = URL(string: imageShortToDownload.url) {
                 let imageRecordToDownload = ImageRecord(url: url)
                 startDownload(for: imageRecordToDownload, at: indexPath, collectionView: collectionView)

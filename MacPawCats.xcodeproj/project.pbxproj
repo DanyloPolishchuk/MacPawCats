@@ -34,6 +34,9 @@
 		9E75EDA52466F4660002C0E1 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA42466F4660002C0E1 /* ImagesViewModel.swift */; };
 		9E75EDA8246717CE0002C0E1 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA7246717CE0002C0E1 /* UserDefaultsKeys.swift */; };
 		9E75EDAA24676BEC0002C0E1 /* ImageOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EDA924676BEC0002C0E1 /* ImageOperations.swift */; };
+		9E83C281247182C300A5C959 /* NetworkAccessibility.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E83C280247182C300A5C959 /* NetworkAccessibility.storyboard */; };
+		9E83C2832471844400A5C959 /* NetworkAccessibilityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E83C2822471844400A5C959 /* NetworkAccessibilityCoordinator.swift */; };
+		9E83C28524718A8000A5C959 /* RoundUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E83C28424718A8000A5C959 /* RoundUIView.swift */; };
 		9EC26F78244DD6D6003EF5E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26F77244DD6D6003EF5E3 /* AppDelegate.swift */; };
 		9EC26F7F244DD6D6003EF5E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EC26F7D244DD6D6003EF5E3 /* Main.storyboard */; };
 		9EC26F82244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC26F80244DD6D6003EF5E3 /* MacPawCats.xcdatamodeld */; };
@@ -107,6 +110,9 @@
 		9E75EDA42466F4660002C0E1 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		9E75EDA7246717CE0002C0E1 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		9E75EDA924676BEC0002C0E1 /* ImageOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOperations.swift; sourceTree = "<group>"; };
+		9E83C280247182C300A5C959 /* NetworkAccessibility.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NetworkAccessibility.storyboard; sourceTree = "<group>"; };
+		9E83C2822471844400A5C959 /* NetworkAccessibilityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAccessibilityCoordinator.swift; sourceTree = "<group>"; };
+		9E83C28424718A8000A5C959 /* RoundUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundUIView.swift; sourceTree = "<group>"; };
 		9EC26F74244DD6D6003EF5E3 /* MacPawCats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPawCats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC26F77244DD6D6003EF5E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EC26F7E244DD6D6003EF5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 				9E1355DB245877AE00C480D7 /* Login */,
 				9E1355DC245877B800C480D7 /* Onboarding */,
 				9E1355DD245877C800C480D7 /* Main */,
+				9E83C27F2471820C00A5C959 /* NetworkAccessibility */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -260,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				9E1355E32458871300C480D7 /* RoundedButton.swift */,
+				9E83C28424718A8000A5C959 /* RoundUIView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -310,6 +318,15 @@
 				9ECE6273246A172D00131475 /* NotificationNames.swift */,
 			);
 			path = Names;
+			sourceTree = "<group>";
+		};
+		9E83C27F2471820C00A5C959 /* NetworkAccessibility */ = {
+			isa = PBXGroup;
+			children = (
+				9E83C280247182C300A5C959 /* NetworkAccessibility.storyboard */,
+				9E83C2822471844400A5C959 /* NetworkAccessibilityCoordinator.swift */,
+			);
+			path = NetworkAccessibility;
 			sourceTree = "<group>";
 		};
 		9EC26F6B244DD6D6003EF5E3 = {
@@ -559,6 +576,7 @@
 			files = (
 				9E1355DF24587C9B00C480D7 /* Login.storyboard in Resources */,
 				9E0622E9245DA7A00024ABEE /* LaunchRoot.storyboard in Resources */,
+				9E83C281247182C300A5C959 /* NetworkAccessibility.storyboard in Resources */,
 				9E0622E3245B43990024ABEE /* Onboarding.storyboard in Resources */,
 				9EC26F87244DD6D8003EF5E3 /* LaunchScreen.storyboard in Resources */,
 				9EC26F84244DD6D8003EF5E3 /* Assets.xcassets in Resources */,
@@ -585,6 +603,7 @@
 				9E0351CA2459DB0900C89AFF /* LoginViewModel.swift in Sources */,
 				9EC26FA9244E2C39003EF5E3 /* ModerationLabel.swift in Sources */,
 				9EC26FF2244F77D0003EF5E3 /* NetworkManager.swift in Sources */,
+				9E83C2832471844400A5C959 /* NetworkAccessibilityCoordinator.swift in Sources */,
 				9E75EDAA24676BEC0002C0E1 /* ImageOperations.swift in Sources */,
 				9EF00D7F2465A75F003B1259 /* ProfileViewModel.swift in Sources */,
 				9EF4D56324570F41004CFD6B /* Router.swift in Sources */,
@@ -607,6 +626,7 @@
 				9E042C0524699AAE00B05F6E /* AdditionalLoadingCollectionReusableView.swift in Sources */,
 				9E042C0324699A8900B05F6E /* FilterCollectionReusableView.swift in Sources */,
 				9ECE6278246A8FB500131475 /* ImagesTableViewController.swift in Sources */,
+				9E83C28524718A8000A5C959 /* RoundUIView.swift in Sources */,
 				9EF00D7D2465A3EE003B1259 /* ProfileViewController.swift in Sources */,
 				9EF4D55D24570D3F004CFD6B /* Coordinator.swift in Sources */,
 				9EC26FED244F6E91003EF5E3 /* EndPointType.swift in Sources */,

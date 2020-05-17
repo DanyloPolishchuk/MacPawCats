@@ -12,6 +12,7 @@ final class AppCoordinator: BaseCoordinator {
     
     private let router: RouterProtocol
     private var launchInstructor = LaunchInstructor.configure()
+    private var networkAccessibilityCoordinator: NetworkAccessibilityCoordinator?
     
     init(router: Router) {
         self.router = router
@@ -19,7 +20,12 @@ final class AppCoordinator: BaseCoordinator {
     
     override func start(with option: DeepLinkOption?) {
         if option != nil {
-            
+            switch option {
+            case .networkAccessibilityScreen:
+                runNetworkAccessibilityFlow()
+            default:
+                break
+            }
         } else {
             switch launchInstructor {
             case .login: runLoginFlow()
@@ -52,9 +58,15 @@ final class AppCoordinator: BaseCoordinator {
         onboardingCoordinator.start()
     }
     private func runMainFlow(){
+        self.removeDependency(networkAccessibilityCoordinator)
         let mainCoordinator = MainCoordinator(router: self.router)
         self.addDependency(mainCoordinator)
         mainCoordinator.start()
+    }
+    private func runNetworkAccessibilityFlow(){
+        networkAccessibilityCoordinator = NetworkAccessibilityCoordinator(router: self.router)
+        self.addDependency(networkAccessibilityCoordinator as! Coordinator)
+        networkAccessibilityCoordinator?.start()
     }
     
 }

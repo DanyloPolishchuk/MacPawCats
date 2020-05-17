@@ -94,9 +94,6 @@ extension MainCoordinator: UITabBarControllerDelegate {
         switch viewController {
         case catsFeedRootNavigationController:
             feedCoordinator.scrollToTop()
-        case profileRootNavigationController:
-            //TODO: implement scrollToTop for currently presented Uploads/Favs/Votes CVC
-            break
         default:
             break
         }
